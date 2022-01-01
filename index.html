@@ -197,10 +197,11 @@
         
         <article>
             <h1 id="introduction">Introduction</h1>
-            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies over space to provide a null expectation .</p>
+            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation of the variance of a given metric over space.</p>
+            <p>Wide range of disciplines: landscape genetics to biogeography.</p>
             <p>As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap generating neutral landscapes that change over time. In this ms we present how <code>NeutralLandscapes.jl</code> is orders of magnitudes faster than packages <code>nlmpy</code> (in python) or <code>NLMR</code> (in R). We then present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation, and demonstrate that it works</p>
             <h1 id="software-overview">Software Overview</h1>
-            <p>This software can generate neutral landscapes using twenty different methods.</p>
+            <p>This software can generate neutral landscapes using several methods, enables masking and works with other julia packages.</p>
             <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="nlmpycite">(<strong>nlmpycite?</strong>)</span></p>
             <p>Table of methods.</p>
             <figure>
@@ -244,8 +245,19 @@
             )
 
             savefig(&quot;./figures/figure1.png&quot;, )</code></pre>
+            <h2 id="interoperability">Interoperability</h2>
+            <p>Ease of use with other julia packages</p>
+            <p>Mask of neutral variable masked across quebec in 3 lines.</p>
             <h1 id="benchmark-comparison-to-nlmpy-and-nlmr">Benchmark comparison to <code>nlmpy</code> and <code>NLMR</code></h1>
-            <p><strong>Fig 2</strong>: Benchmark comparison of all of methods in each of the three languages</p>
+            <p>It’s fast. As the scale and resolution of raster data increases, neutral models must be able to scale to match those data dimensions.</p>
+            <p>Here we provide two benchmark tests.</p>
+            <p>First a comparison of the speed variety of methods from each <code>NeutralLandscapes.jl</code>, <code>NLMR</code>, and <code>nlmpy</code>.</p>
+            <p>Second we compare these performance of each of these software packages as rasters become larger. We show that <code>Julia</code> even outperforms the <code>NLMR</code> via C++ implemention of a particularly slow neutral landscape method (midpoint displacement).</p>
+            <p><strong>Fig 2</strong>: Benchmark comparison of selected methods in each of the three languages</p>
+            <p><strong>Fig 3</strong> scale comparison</p>
+            <figure>
+            <img src="" alt="Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)" /><figcaption aria-hidden="true">Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)</figcaption>
+            </figure>
             <h1 id="generating-dynamic-neutral-landscapes">Generating dynamic neutral landscapes</h1>
             <p>We implement methods for generating change that are temporally autocorrelated, spatially autocorrelated, or both.</p>
             <p><span class="math inline"><em>M</em><sub><em>t</em></sub> = <em>f</em>(<em>M</em><sub><em>t</em> − 1</sub>)</span></p>

@@ -6,3 +6,12 @@
 source}\label{fig:allmethods}
 }
 \end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{}
+\caption{Comparison of speed of generating a midpoint displacement
+neutral landscape (y-axis) against raster size (measured as length of
+the size of a square raster, x-axis)}
+\end{figure}

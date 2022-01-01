@@ -251,7 +251,10 @@ Soon to be a paper, maybe. TK authors, MKB,VB,RS,TP
 \section{Introduction}\label{introduction}}
 
 Neutral landscapes are increasingly used in ecological and evolutionary
-studies over space to provide a null expectation .
+studies to provide a null expectation of the variance of a given metric
+over space.
+
+Wide range of disciplines: landscape genetics to biogeography.
 
 As biodiversity science becomes increasingly concerned with temporal
 change and its consequences, its clear there is a gap generating neutral
@@ -265,8 +268,8 @@ works
 \hypertarget{software-overview}{%
 \section{Software Overview}\label{software-overview}}
 
-This software can generate neutral landscapes using twenty different
-methods.
+This software can generate neutral landscapes using several methods,
+enables masking and works with other julia packages.
 
 fig.~\ref{fig:allmethods} shows a replica of Figure 1 from
 (\textbf{nlmpycite?})
@@ -323,12 +326,42 @@ plot(
 savefig("./figures/figure1.png", )
 \end{verbatim}
 
+\hypertarget{interoperability}{%
+\subsection{Interoperability}\label{interoperability}}
+
+Ease of use with other julia packages
+
+Mask of neutral variable masked across quebec in 3 lines.
+
 \hypertarget{benchmark-comparison-to-nlmpy-and-nlmr}{%
 \section{\texorpdfstring{Benchmark comparison to \texttt{nlmpy} and
 \texttt{NLMR}}{Benchmark comparison to nlmpy and NLMR}}\label{benchmark-comparison-to-nlmpy-and-nlmr}}
 
-\textbf{Fig 2}: Benchmark comparison of all of methods in each of the
+It's fast. As the scale and resolution of raster data increases, neutral
+models must be able to scale to match those data dimensions.
+
+Here we provide two benchmark tests.
+
+First a comparison of the speed variety of methods from each
+\texttt{NeutralLandscapes.jl}, \texttt{NLMR}, and \texttt{nlmpy}.
+
+Second we compare these performance of each of these software packages
+as rasters become larger. We show that \texttt{Julia} even outperforms
+the \texttt{NLMR} via C++ implemention of a particularly slow neutral
+landscape method (midpoint displacement).
+
+\textbf{Fig 2}: Benchmark comparison of selected methods in each of the
 three languages
+
+\textbf{Fig 3} scale comparison
+
+\begin{figure}
+\centering
+\includegraphics{}
+\caption{Comparison of speed of generating a midpoint displacement
+neutral landscape (y-axis) against raster size (measured as length of
+the size of a square raster, x-axis)}
+\end{figure}
 
 \hypertarget{generating-dynamic-neutral-landscapes}{%
 \section{Generating dynamic neutral

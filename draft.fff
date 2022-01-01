@@ -3,14 +3,14 @@
 \centering
 \includegraphics{./figures/figure1.png}
 \caption{Recreation of the figure in \texttt{nlmpy} paper and the
-source}\label{fig:allmethods}
+source, supplied in less than 40 lines of code.}\label{fig:allmethods}
 }
 \end{figure}
 \efloatseparator
  
 \begin{figure}
 \centering
-\includegraphics{}
+\includegraphics{./figures/draftfig3.png}
 \caption{Comparison of speed of generating a midpoint displacement
 neutral landscape (y-axis) against raster size (measured as length of
 the size of a square raster, x-axis)}

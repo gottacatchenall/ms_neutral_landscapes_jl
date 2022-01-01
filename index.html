@@ -200,10 +200,55 @@
             <p>Neutral landscapes are increasingly used in ecological and evolutionary studies over space to provide a null expectation .</p>
             <p>As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap generating neutral landscapes that change over time. In this ms we present how <code>NeutralLandscapes.jl</code> is orders of magnitudes faster than packages <code>nlmpy</code> (in python) or <code>NLMR</code> (in R). We then present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation, and demonstrate that it works</p>
             <h1 id="software-overview">Software Overview</h1>
-            <p><strong>Fig 1</strong>: Recreation of the figure in <code>nlmpy</code> paper and the source</p>
-            <h1 id="comparison-to-nlmpy-and-nlmr">Comparison to <code>nlmpy</code> and <code>NLMR</code></h1>
+            <p>This software can generate neutral landscapes using twenty different methods.</p>
+            <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="nlmpycite">(<strong>nlmpycite?</strong>)</span></p>
+            <p>Table of methods.</p>
+            <figure>
+            <img src="./figures/figure1.png" id="fig:allmethods" alt="Figure 1: Recreation of the figure in nlmpy paper and the source" /><figcaption aria-hidden="true">Figure 1: Recreation of the figure in <code>nlmpy</code> paper and the source</figcaption>
+            </figure>
+            <pre><code>using NeutralLandscapes, Plots
+            siz = 50, 50
+
+            Fig1a = rand(NoGradient(), siz) # Random NLM
+            Fig1b = rand(PlanarGradient(), siz) # Planar gradient NLM
+            Fig1c = rand(EdgeGradient(), siz) # Edge gradient NLM
+            Fig1d = falses(siz) 
+            Fig1d[10:25, 10:25] .= true # Mask example
+            Fig1e = rand(DistanceGradient(findall(vec(Fig1d))), siz) # Mask example
+            Fig1f = rand(MidpointDisplacement(0.75), siz) # Mask example
+            Fig1g = rand(RectangularCluster(4, 8), siz)
+            Fig1h = rand(NearestNeighborElement(200), siz)
+            Fig1i = rand(NearestNeighborCluster(0.4), siz)
+            Fig1j = blend([Fig1f, Fig1c])
+            Fig1k = blend(Fig1h, Fig1e, 1.5)
+            Fig1l = classify(Fig1i, ones(4))
+            Fig1m = classify(Fig1a, [1-0.5, 0.5])
+            Fig1n = classify(Fig1g, [1-0.75, 0.75])
+            Fig1o = classify(Fig1f, ones(3))
+            Fig1p = classify(Fig1f, ones(3), Fig1d)
+            Fig1q = rand(PlanarGradient(90), siz, mask = Fig1n .== 2) #TODO mask as keyword + should mask be matrix or vec or both? (Fig1e)
+            Fig1r = ifelse.(Fig1o .== 2, Fig1m .+ 2, Fig1o)
+            Fig1s = rotr90(Fig1l)
+            Fig1t = Fig1o&#39;
+
+            class = cgrad(:Set3_4, 4, categorical = true)
+            c2, c3, c4 = class[1:2], class[1:3], class[1:4]
+
+            gr(color = :fire, ticks = false, framestyle = :box, dpi=500, colorbar = false)
+            plot(
+                heatmap(Fig1a),         heatmap(Fig1b),         heatmap(Fig1c),         heatmap(Fig1d, c = c2), heatmap(Fig1e),
+                heatmap(Fig1f),         heatmap(Fig1g),         heatmap(Fig1h),         heatmap(Fig1i),         heatmap(Fig1j), 
+                heatmap(Fig1k),         heatmap(Fig1l, c = c4), heatmap(Fig1m, c = c2), heatmap(Fig1n, c = c2), heatmap(Fig1o, c = c3),
+                heatmap(Fig1p, c = c4), heatmap(Fig1q),         heatmap(Fig1r, c = c4), heatmap(Fig1s, c = c4), heatmap(Fig1t, c = c3),
+                layout = (4,5), size = (1600, 1270)
+            )
+
+            savefig(&quot;./figures/figure1.png&quot;, )</code></pre>
+            <h1 id="benchmark-comparison-to-nlmpy-and-nlmr">Benchmark comparison to <code>nlmpy</code> and <code>NLMR</code></h1>
             <p><strong>Fig 2</strong>: Benchmark comparison of all of methods in each of the three languages</p>
             <h1 id="generating-dynamic-neutral-landscapes">Generating dynamic neutral landscapes</h1>
+            <p>We implement methods for generating change that are temporally autocorrelated, spatially autocorrelated, or both.</p>
+            <p><span class="math inline"><em>M</em><sub><em>t</em></sub> = <em>f</em>(<em>M</em><sub><em>t</em> − 1</sub>)</span></p>
             <h1 id="discussion">Discussion</h1>
             <h1 id="references">References</h1>
         </article>

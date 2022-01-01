@@ -1,0 +1,8 @@
+\begin{figure}
+\hypertarget{fig:allmethods}{%
+\centering
+\includegraphics{./figures/figure1.png}
+\caption{Recreation of the figure in \texttt{nlmpy} paper and the
+source}\label{fig:allmethods}
+}
+\end{figure}

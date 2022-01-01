@@ -25,7 +25,7 @@ scatter(jl.side, jl.time_seconds,
     xticks=(3:12,ugh),
     ylim=(10^-5, 10^2),
     dpi=300)
-plot!(jl.side, jl.time_seconds, c=:dodgerblue)
+plot!(jl.side, jl.time_seconds, c=:dodgerblue, label="")
 
 scatter!(log2.(r.sidelength), (r.time_sec), 
     label="NLMR (using C++)", 
@@ -33,3 +33,5 @@ scatter!(log2.(r.sidelength), (r.time_sec),
 scatter!(log2.(py.size), py.time_seconds, 
     ma=0.1,
     label="nlmpy")
+
+    savefig("draftfig3.png")

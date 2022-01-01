@@ -1,7 +1,9 @@
 # Introduction
 
-Neutral landscapes are increasingly used in ecological and evolutionary 
-studies over space to provide a null expectation .
+Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation of the variance of a given metric over space.
+
+Wide range of disciplines: landscape genetics to biogeography.
+
 
 As biodiversity science becomes increasingly concerned with temporal change
 and its consequences, its clear there is a gap generating neutral landscapes
@@ -13,7 +15,7 @@ levels of spatial and temporal autocorrelation, and demonstrate that it works
 
 # Software Overview
 
-This software can generate neutral landscapes using twenty different methods.
+This software can generate neutral landscapes using several methods, enables masking and works with other julia packages.
 
 @fig:allmethods shows a replica of Figure 1 from @nlmpycite
 
@@ -62,9 +64,31 @@ plot(
 savefig("./figures/figure1.png", )
 ```
 
+## Interoperability
+
+Ease of use with other julia packages
+
+Mask of neutral variable masked across quebec in 3 lines.
+
 # Benchmark comparison to `nlmpy` and `NLMR`
 
-**Fig 2**: Benchmark comparison of all of methods in each of the three languages
+It's fast. As the scale and resolution of raster data increases, neutral models must be able to scale to match
+those data dimensions. 
+
+Here we provide two benchmark tests.
+
+First a comparison of the speed variety of methods from each `NeutralLandscapes.jl`, 
+`NLMR`, and `nlmpy`.
+
+Second we compare these performance of each of these software packages as rasters become larger. We show that 
+`Julia` even outperforms the `NLMR` via C++ implemention of a particularly slow neutral landscape method (midpoint displacement). 
+
+
+**Fig 2**: Benchmark comparison of selected methods in each of the three languages
+
+**Fig 3** scale comparison 
+
+![Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)]()
 
 # Generating dynamic neutral landscapes
 
@@ -77,3 +101,4 @@ $M_t = f(M_{t-1})$
 # Discussion 
 
 # References
+

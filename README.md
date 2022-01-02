@@ -26,6 +26,22 @@ and then apply masks and categorical classifcation to them.
 
 Table of methods.
 
+
+
+| Model 	                               | nlmpy? | NLMR | Description                            | Reference | Aliases |
+|------------------------------------------|--------|------|----------------------------------------|---        | --      |
+| No gradient	                           | x      | x    |                                        |           |         |
+| Planar gradient                          | x      | x    | 	                                    |           |         |
+| Distance gradient                        | x      | x    |     	                                |           |         |
+| Random rectuangular cluster              | x      | x    |     	                                |           |         |
+| Random element nearest-neighbor          | x      | x*   |     	                                |           | `nlm_mosaictess`, k-means |    
+| Random cluster nearest-neighbor          | x      | x    |     	                                |           |         |
+| Random curds                             |        | x    |     	                                |
+| Gaussian Field                           |        | x    | | |
+| Perlin noise                             | x      |      | | | 
+| Diamond-square                           |        |      | | |
+| Mosaic random field                      |        | x    | | |
+
 In
 
 ![Recreation of the figure in `nlmpy` paper and the source, supplied in less than 40 lines of code.](./figures/figure1.png){#fig:allmethods}

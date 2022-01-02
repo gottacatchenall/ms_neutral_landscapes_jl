@@ -10,7 +10,7 @@ source, supplied in less than 40 lines of code.}\label{fig:allmethods}
  
 \begin{figure}
 \centering
-\includegraphics{./figures/draftfig3.png}
+\includegraphics{./figures/figure3.png}
 \caption{Comparison of speed of generating a midpoint displacement
 neutral landscape (y-axis) against raster size (measured as length of
 the size of a square raster, x-axis)}

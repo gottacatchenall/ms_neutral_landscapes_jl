@@ -218,9 +218,9 @@
             <p>In fig 2 we should a selection of neutral landscape generators (random, edge gradient, perlin noise, distance-gradient)</p>
             <h2 id="mpd-comparison">MPD comparison</h2>
             <p>Why use this particular generator as the comparison? It’s slow. So slow that NLMR implements it in C++. (NLMR implements both MPD, neighbor, randrect, and random neighboorhood in c++). Still these three algorithms, which cosinsts of 3/16 of NLMR’s alg implementations, constitute 33% of its codebase.</p>
-            <p>In this section we show our implementation of MPD is faster than NLMR’s C++ MPD across all scales, up to the asyptotic limit imposed by the <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> scaling of the raster</p>
+            <p>In this section we show our implementation of MPD is faster than NLMR’s C++ MPD scales until the asyptotic limit imposed by the <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> scaling of the raster</p>
             <figure>
-            <img src="./figures/draftfig3.png" alt="Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)" /><figcaption aria-hidden="true">Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)</figcaption>
+            <img src="./figures/figure3.png" alt="Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)" /><figcaption aria-hidden="true">Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)</figcaption>
             </figure>
             <h1 id="generating-dynamic-neutral-landscapes">Generating dynamic neutral landscapes</h1>
             <p>We implement methods for generating change that are temporally autocorrelated, spatially autocorrelated, or both.</p>

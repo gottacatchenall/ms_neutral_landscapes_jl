@@ -36,7 +36,7 @@ with open('py_scalebench.csv', 'w') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["size", "batch", "time_seconds"])
     nbatches = 50
-    for sideexp in range(3, 13):
+    for sideexp in range(3, 11):
         for batch in range(0,nbatches):
             t1 = time.time()
             r = nlmpy.mpd(2**sideexp,2**sideexp,0.8),

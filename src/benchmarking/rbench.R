@@ -19,7 +19,7 @@ nnc = nlm_randomcluster(250,250, p=0.9)
 
 # scale dep 
 
-sideexp = seq(3,12)
+sideexp = seq(3,13)
 
 df = data.frame(sidelength=c(0), time_nanoseconds=c(0))
 for (s in sideexp){
@@ -30,3 +30,6 @@ for (s in sideexp){
 
 df$time_sec = df$time_nanoseconds / 10^9
 write.csv(df, "r_scalebench.csv")
+
+
+

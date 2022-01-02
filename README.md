@@ -60,11 +60,11 @@ Why use this particular generator as the comparison? It's slow. So slow that NLM
 implements it in C++. (NLMR implements both MPD, neighbor, randrect, and random neighboorhood in c++).  Still these three algorithms,
 which cosinsts of 3/16 of NLMR's alg implementations, constitute 33% of its codebase.
 
-In this section we show our implementation of MPD is faster than NLMR's C++ MPD across all scales, 
-up to the asyptotic limit imposed by the $O(n^2)$ scaling of the raster
+In this section we show our implementation of MPD is faster than NLMR's C++ MPD scales until
+the  asyptotic limit imposed by the $O(n^2)$ scaling of the raster
 
 
-![Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)](./figures/draftfig3.png)
+![Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)](./figures/figure3.png)
 
 # Generating dynamic neutral landscapes
 

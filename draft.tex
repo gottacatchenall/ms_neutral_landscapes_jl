@@ -197,16 +197,15 @@ Soon to be a paper, maybe. TK authors, MKB,VB,RS,TP
 Neutral landscapes are increasingly used in ecological and evolutionary
 studies to provide a null expectation spatial variation of a given
 measurement. Originally developed to simulate the spatially
-autocorrelated data (\textbf{Gardner1987NeuMod?};
-\textbf{Milne1992SpaAgg?}), the have seen use in a wide range of
-disciplines: from landscape genetics (\textbf{Storfer2007PutLan?}), to
-landscape and spatial ecology (\textbf{Tinker2004HisRan?};
-\textbf{Remmel2013CatCla?}), and biogeography
-(\textbf{Albert2017BarDis?}).
+autocorrelated data (Gardner \emph{et al.} 1987; Milne 1992), the have
+seen use in a wide range of disciplines: from landscape genetics
+(Storfer \emph{et al.} 2007), to landscape and spatial ecology (Tinker
+\emph{et al.} 2004; Remmel \& Fortin 2013), and biogeography (Albert
+\emph{et al.} 2017).
 
 The two primary packages used to simulate neutral landscapes are
-\texttt{NLMR} in (the \texttt{R} language) (\textbf{Sciaini2018NlmLan?})
-and \texttt{NLMpy} (in Python; \textbf{Etherington2015NlmPyt?}). We
+\texttt{NLMR} in (the \texttt{R} language) (Sciaini \emph{et al.} 2018)
+and \texttt{NLMpy} (in Python; Etherington \emph{et al.} 2015). We
 present \texttt{NeutralLandscapes.jl}, a package in \texttt{Julia} for
 neutral landscapes which is faster than both above package. Here we
 demonstrate that \texttt{NeutralLandscapes.jl}, depending on the method,
@@ -224,10 +223,10 @@ levels of spatial and temporal autocorrelation, which is implemented in
 This software can generate neutral landscapes using several methods,
 enables masking and works with other julia packages.
 
-fig.~\ref{fig:allmethods} shows a replica of Figure 1 from
-(\textbf{Etherington2015NlmPyt?}), which shows the capacity of the
-library to generate different types of neutral landscapes, and then
-apply masks and categorical classifcation to them.
+fig.~\ref{fig:allmethods} shows a replica of Figure 1 from Etherington
+\emph{et al.} (2015), which shows the capacity of the library to
+generate different types of neutral landscapes, and then apply masks and
+categorical classifcation to them.
 
 \begin{figure}
 \hypertarget{fig:allmethods}{%
@@ -337,6 +336,53 @@ data}\label{rescaling-to-mimic-real-data}}
 \section{Discussion}\label{discussion}}
 
 \hypertarget{references}{%
-\section{References}\label{references}}
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-Albert2017BarDis}{}%
+Albert, J.S., Schoolmaster, D.R., JR., Tagliacollo, V. \&
+Duke-Sylvester, S.M. (2017). Barrier Displacement on a Neutral
+Landscape: Toward a Theory of Continental Biogeography. \emph{Systematic
+Biology}, 66, 167--182.
+
+\leavevmode\hypertarget{ref-Etherington2015NlmPyt}{}%
+Etherington, T.R., Holland, E.P. \& O'Sullivan, D. (2015). NLMpy: A
+python software package for the creation of neutral landscape models
+within a general numerical framework. \emph{Methods in Ecology and
+Evolution}, 6, 164--168.
+
+\leavevmode\hypertarget{ref-Gardner1987NeuMod}{}%
+Gardner, R.H., Milne, B.T., Turnei, M.G. \& O'Neill, R.V. (1987).
+Neutral models for the analysis of broad-scale landscape pattern.
+\emph{Landscape Ecology}, 1, 19--28.
+
+\leavevmode\hypertarget{ref-Milne1992SpaAgg}{}%
+Milne, B.T. (1992). Spatial Aggregation and Neutral Models in Fractal
+Landscapes. \emph{The American Naturalist}, 139, 32--57.
+
+\leavevmode\hypertarget{ref-Remmel2013CatCla}{}%
+Remmel, T.K. \& Fortin, M.-J. (2013). Categorical, class-focused map
+patterns: Characterization and comparison. \emph{Landscape Ecology}, 28,
+1587--1599.
+
+\leavevmode\hypertarget{ref-Sciaini2018NlmLan}{}%
+Sciaini, M., Fritsch, M., Scherer, C. \& Simpkins, C.E. (2018). NLMR and
+landscapetools: An integrated environment for simulating and modifying
+neutral landscape models in R. \emph{Methods in Ecology and Evolution},
+9, 2240--2248.
+
+\leavevmode\hypertarget{ref-Storfer2007PutLan}{}%
+Storfer, A., Murphy, M.A., Evans, J.S., Goldberg, C.S., Robinson, S.,
+Spear, S.F., \emph{et al.} (2007). Putting the {``landscape''} in
+landscape genetics. \emph{Heredity}, 98, 128--142.
+
+\leavevmode\hypertarget{ref-Tinker2004HisRan}{}%
+Tinker, D., Romme, W.H. \& Despain, D. (2004). Historic range of
+variability in landscape structure in subalpine forests of the Greater
+Yellowstone Area, USA. \emph{Landscape Ecology}.
+
+\end{CSLReferences}
 
 \end{document}

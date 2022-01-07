@@ -197,11 +197,11 @@
         
         <article>
             <h1 id="introduction">Introduction</h1>
-            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation spatial variation of a given measurement. Originally developed to simulate the spatially autocorrelated data <span class="citation" data-cites="Gardner1987NeuMod Milne1992SpaAgg">(<strong>Gardner1987NeuMod?</strong>; <strong>Milne1992SpaAgg?</strong>)</span>, the have seen use in a wide range of disciplines: from landscape genetics <span class="citation" data-cites="Storfer2007PutLan">(<strong>Storfer2007PutLan?</strong>)</span>, to landscape and spatial ecology <span class="citation" data-cites="Tinker2004HisRan Remmel2013CatCla">(<strong>Tinker2004HisRan?</strong>; <strong>Remmel2013CatCla?</strong>)</span>, and biogeography <span class="citation" data-cites="Albert2017BarDis">(<strong>Albert2017BarDis?</strong>)</span>.</p>
-            <p>The two primary packages used to simulate neutral landscapes are <code>NLMR</code> in (the <code>R</code> language) <span class="citation" data-cites="Sciaini2018NlmLan">(<strong>Sciaini2018NlmLan?</strong>)</span> and <code>NLMpy</code> <span class="citation" data-cites="Etherington2015NlmPyt">(in Python; <strong>Etherington2015NlmPyt?</strong>)</span>. We present <code>NeutralLandscapes.jl</code>, a package in <code>Julia</code> for neutral landscapes which is faster than both above package. Here we demonstrate that <code>NeutralLandscapes.jl</code>, depending on the method, is orders of magnitude faster than previous neutral landscape packages. As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap in methodology in generating neutral landscapes that change over time. In addition we present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation, which is implemented in <code>NeutralLandscapes.jl</code></p>
+            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation spatial variation of a given measurement. Originally developed to simulate the spatially autocorrelated data <span class="citation" data-cites="Gardner1987NeuMod Milne1992SpaAgg">(Gardner <em>et al.</em> 1987; Milne 1992)</span>, the have seen use in a wide range of disciplines: from landscape genetics <span class="citation" data-cites="Storfer2007PutLan">(Storfer <em>et al.</em> 2007)</span>, to landscape and spatial ecology <span class="citation" data-cites="Tinker2004HisRan Remmel2013CatCla">(Tinker <em>et al.</em> 2004; Remmel &amp; Fortin 2013)</span>, and biogeography <span class="citation" data-cites="Albert2017BarDis">(Albert <em>et al.</em> 2017)</span>.</p>
+            <p>The two primary packages used to simulate neutral landscapes are <code>NLMR</code> in (the <code>R</code> language) <span class="citation" data-cites="Sciaini2018NlmLan">(Sciaini <em>et al.</em> 2018)</span> and <code>NLMpy</code> <span class="citation" data-cites="Etherington2015NlmPyt">(in Python; Etherington <em>et al.</em> 2015)</span>. We present <code>NeutralLandscapes.jl</code>, a package in <code>Julia</code> for neutral landscapes which is faster than both above package. Here we demonstrate that <code>NeutralLandscapes.jl</code>, depending on the method, is orders of magnitude faster than previous neutral landscape packages. As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap in methodology in generating neutral landscapes that change over time. In addition we present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation, which is implemented in <code>NeutralLandscapes.jl</code></p>
             <h1 id="software-overview">Software Overview</h1>
             <p>This software can generate neutral landscapes using several methods, enables masking and works with other julia packages.</p>
-            <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="Etherington2015NlmPyt">(<strong>Etherington2015NlmPyt?</strong>)</span>, which shows the capacity of the library to generate different types of neutral landscapes, and then apply masks and categorical classifcation to them.</p>
+            <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="Etherington2015NlmPyt">Etherington <em>et al.</em> (2015)</span>, which shows the capacity of the library to generate different types of neutral landscapes, and then apply masks and categorical classifcation to them.</p>
             <figure>
             <img src="./figures/figure1.png" id="fig:allmethods" alt="Figure 1: Recreation of the figure in nlmpy paper and the source, supplied in less than 40 lines of code." /><figcaption aria-hidden="true">Figure 1: Recreation of the figure in <code>nlmpy</code> paper and the source, supplied in less than 40 lines of code.</figcaption>
             </figure>
@@ -249,7 +249,33 @@
             <p><span class="math inline"><em>f</em><sub><em>S</em><em>T</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
             <h2 id="rescaling-to-mimic-real-data">Rescaling to mimic real data</h2>
             <h1 id="discussion">Discussion</h1>
-            <h1 id="references">References</h1>
+            <h1 class="unnumbered" id="references">References</h1>
+            <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+            <div id="ref-Albert2017BarDis" class="csl-entry" role="doc-biblioentry">
+            Albert, J.S., Schoolmaster, D.R., JR., Tagliacollo, V. &amp; Duke-Sylvester, S.M. (2017). Barrier Displacement on a Neutral Landscape: Toward a Theory of Continental Biogeography. <em>Systematic Biology</em>, 66, 167–182.
+            </div>
+            <div id="ref-Etherington2015NlmPyt" class="csl-entry" role="doc-biblioentry">
+            Etherington, T.R., Holland, E.P. &amp; O’Sullivan, D. (2015). NLMpy: A python software package for the creation of neutral landscape models within a general numerical framework. <em>Methods in Ecology and Evolution</em>, 6, 164–168.
+            </div>
+            <div id="ref-Gardner1987NeuMod" class="csl-entry" role="doc-biblioentry">
+            Gardner, R.H., Milne, B.T., Turnei, M.G. &amp; O’Neill, R.V. (1987). Neutral models for the analysis of broad-scale landscape pattern. <em>Landscape Ecology</em>, 1, 19–28.
+            </div>
+            <div id="ref-Milne1992SpaAgg" class="csl-entry" role="doc-biblioentry">
+            Milne, B.T. (1992). Spatial Aggregation and Neutral Models in Fractal Landscapes. <em>The American Naturalist</em>, 139, 32–57.
+            </div>
+            <div id="ref-Remmel2013CatCla" class="csl-entry" role="doc-biblioentry">
+            Remmel, T.K. &amp; Fortin, M.-J. (2013). Categorical, class-focused map patterns: Characterization and comparison. <em>Landscape Ecology</em>, 28, 1587–1599.
+            </div>
+            <div id="ref-Sciaini2018NlmLan" class="csl-entry" role="doc-biblioentry">
+            Sciaini, M., Fritsch, M., Scherer, C. &amp; Simpkins, C.E. (2018). NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. <em>Methods in Ecology and Evolution</em>, 9, 2240–2248.
+            </div>
+            <div id="ref-Storfer2007PutLan" class="csl-entry" role="doc-biblioentry">
+            Storfer, A., Murphy, M.A., Evans, J.S., Goldberg, C.S., Robinson, S., Spear, S.F., <em>et al.</em> (2007). Putting the <span>“landscape”</span> in landscape genetics. <em>Heredity</em>, 98, 128–142.
+            </div>
+            <div id="ref-Tinker2004HisRan" class="csl-entry" role="doc-biblioentry">
+            Tinker, D., Romme, W.H. &amp; Despain, D. (2004). Historic range of variability in landscape structure in subalpine forests of the Greater Yellowstone Area, USA. <em>Landscape Ecology</em>.
+            </div>
+            </div>
         </article>
     </main>
 

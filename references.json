@@ -1,119 +1,463 @@
 [
     {
-        "DOI": "10.1002/jez.1400610202",
+        "DOI": "10.1093/sysbio/syw080",
         "author": [
             {
-                "family": "Allee",
-                "given": "W. C."
+                "family": "Albert",
+                "given": "James S."
             },
             {
-                "family": "Bowen",
-                "given": "Edith S."
+                "family": "Schoolmaster",
+                "given": "Donald R.",
+                "suffix": "JR."
+            },
+            {
+                "family": "Tagliacollo",
+                "given": "Victor"
+            },
+            {
+                "family": "Duke-Sylvester",
+                "given": "Scott M."
             }
         ],
-        "container-title": "Journal of Experimental Zoology",
-        "id": "Allee1932StuAni",
+        "container-title": "Systematic Biology",
+        "id": "Albert2017BarDis",
         "issue": "2",
         "issued": {
             "date-parts": [
                 [
-                    1932,
+                    2017,
+                    3
+                ]
+            ]
+        },
+        "page": "167-182",
+        "title": "Barrier Displacement on a Neutral Landscape: Toward a Theory of Continental Biogeography",
+        "type": "article-journal",
+        "volume": "66"
+    },
+    {
+        "id": "CatCla",
+        "publisher": "https://link-springer-com.proxy3.library.mcgill.ca/article/10.1007%2Fs10980-013-9905-x",
+        "title": "Categorical, class-focused map patterns: Characterization and comparison | SpringerLink",
+        "type": ""
+    },
+    {
+        "DOI": "10.1111/2041-210X.12308",
+        "author": [
+            {
+                "family": "Etherington",
+                "given": "Thomas R."
+            },
+            {
+                "family": "Holland",
+                "given": "E. Penelope"
+            },
+            {
+                "family": "O\u2019Sullivan",
+                "given": "David"
+            }
+        ],
+        "container-title": "Methods in Ecology and Evolution",
+        "editor": [
+            {
+                "family": "Poisot",
+                "given": "Timoth\u00e9e"
+            }
+        ],
+        "id": "Etherington2015NlmPyt",
+        "issue": "2",
+        "issued": {
+            "date-parts": [
+                [
+                    2015,
                     2
                 ]
             ]
         },
-        "page": "185-207",
-        "title": "Studies in animal aggregations: Mass protection against colloidal silver among goldfishes",
+        "page": "164-168",
+        "title": "NLMpy: A python software package for the creation of neutral landscape models within a general numerical framework",
         "type": "article-journal",
-        "volume": "61"
+        "volume": "6"
     },
     {
+        "DOI": "10.1007/BF02275262",
         "author": [
             {
-                "family": "Camerano",
-                "given": "Lorenzo"
-            }
-        ],
-        "container-title": "Atti Della R. Accad. Delle Sci. Torino",
-        "id": "Camerano1880EquViv",
-        "issued": {
-            "date-parts": [
-                [
-                    1880
-                ]
-            ]
-        },
-        "page": "393-414",
-        "title": "Dell\u2019equilibrio dei viventi merce la reciproca distruzione",
-        "type": "article-journal",
-        "volume": "15"
-    },
-    {
-        "author": [
-            {
-                "family": "Elton",
-                "given": "Charles S"
-            }
-        ],
-        "id": "Elton1927AniEco",
-        "issued": {
-            "date-parts": [
-                [
-                    1927
-                ]
-            ]
-        },
-        "publisher": "University of Chicago Press",
-        "title": "Animal ecology",
-        "type": "book"
-    },
-    {
-        "author": [
-            {
-                "family": "Fahrenholz",
-                "given": "H."
-            }
-        ],
-        "container-title": "Zool. Anz.",
-        "id": "Fahrenholz1913EctUnd",
-        "issued": {
-            "date-parts": [
-                [
-                    1913
-                ]
-            ]
-        },
-        "page": "371-374",
-        "title": "Ectoparasiten und abstammungslehre",
-        "type": "article-journal",
-        "volume": "41"
-    },
-    {
-        "DOI": "10.1111/j.1096-3642.1935.tb01680.x",
-        "author": [
-            {
-                "family": "Nicholson",
-                "given": "A. J."
+                "family": "Gardner",
+                "given": "Robert H."
             },
             {
-                "family": "Bailey",
-                "given": "V. A."
+                "family": "Milne",
+                "given": "Bruce T."
+            },
+            {
+                "family": "Turnei",
+                "given": "Monica G."
+            },
+            {
+                "family": "O\u2019Neill",
+                "given": "Robert V."
             }
         ],
-        "container-title": "Proceedings of the Zoological Society of London",
-        "id": "Nicholson1935BalAni",
+        "container-title": "Landscape Ecology",
+        "id": "Gardner1987NeuMod",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    1987,
+                    7
+                ]
+            ]
+        },
+        "page": "19-28",
+        "title": "Neutral models for the analysis of broad-scale landscape pattern",
+        "type": "article-journal",
+        "volume": "1"
+    },
+    {
+        "DOI": "10.1007/BF02275262",
+        "author": [
+            {
+                "family": "Gardner",
+                "given": "Robert H."
+            },
+            {
+                "family": "Milne",
+                "given": "Bruce T."
+            },
+            {
+                "family": "Turnei",
+                "given": "Monica G."
+            },
+            {
+                "family": "O\u2019Neill",
+                "given": "Robert V."
+            }
+        ],
+        "container-title": "Landscape Ecology",
+        "id": "Gardner1987NeuModa",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    1987,
+                    7
+                ]
+            ]
+        },
+        "page": "19-28",
+        "title": "Neutral models for the analysis of broad-scale landscape pattern",
+        "type": "article-journal",
+        "volume": "1"
+    },
+    {
+        "DOI": "10.1007/s10980-006-9011-4",
+        "author": [
+            {
+                "family": "Gardner",
+                "given": "Robert H."
+            },
+            {
+                "family": "Urban",
+                "given": "Dean L."
+            }
+        ],
+        "container-title": "Landscape Ecology",
+        "id": "Gardner2007NeuMod",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2007,
+                    1
+                ]
+            ]
+        },
+        "page": "15-29",
+        "title": "Neutral models for testing landscape hypotheses",
+        "type": "article-journal",
+        "volume": "22"
+    },
+    {
+        "DOI": "10.1111/j.2006.0906-7590.04381.x",
+        "author": [
+            {
+                "family": "Lancaster",
+                "given": "Jill"
+            }
+        ],
+        "container-title": "Ecography",
+        "id": "Lancaster2006UsiNeu",
         "issue": "3",
         "issued": {
             "date-parts": [
                 [
-                    1935,
-                    9
+                    2006
                 ]
             ]
         },
-        "page": "551-598",
-        "title": "The Balance of Animal Populations.Part I.",
+        "page": "385-395",
+        "title": "Using neutral landscapes to identify patterns of aggregation across resource points",
         "type": "article-journal",
-        "volume": "105"
+        "volume": "29"
+    },
+    {
+        "DOI": "10.1086/285312",
+        "author": [
+            {
+                "family": "Milne",
+                "given": "Bruce T."
+            }
+        ],
+        "container-title": "The American Naturalist",
+        "id": "Milne1992SpaAgg",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    1992,
+                    1
+                ]
+            ]
+        },
+        "page": "32-57",
+        "title": "Spatial Aggregation and Neutral Models in Fractal Landscapes",
+        "type": "article-journal",
+        "volume": "139"
+    },
+    {
+        "DOI": "10.1086/285312",
+        "author": [
+            {
+                "family": "Milne",
+                "given": "Bruce T."
+            }
+        ],
+        "container-title": "The American Naturalist",
+        "id": "Milne1992SpaAgga",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    1992,
+                    1
+                ]
+            ]
+        },
+        "page": "32-57",
+        "publisher": "The University of Chicago Press",
+        "title": "Spatial Aggregation and Neutral Models in Fractal Landscapes",
+        "type": "article-journal",
+        "volume": "139"
+    },
+    {
+        "id": "NlmLan",
+        "publisher": "https://besjournals-onlinelibrary-wiley-com.proxy3.library.mcgill.ca/doi/full/10.1111/2041-210X.13076",
+        "title": "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R - Sciaini - 2018 - Methods in Ecology and Evolution - Wiley Online Library",
+        "type": ""
+    },
+    {
+        "DOI": "10.1007/s10980-013-9905-x",
+        "author": [
+            {
+                "family": "Remmel",
+                "given": "Tarmo K."
+            },
+            {
+                "family": "Fortin",
+                "given": "Marie-Jos\u00e9e"
+            }
+        ],
+        "container-title": "Landscape Ecology",
+        "id": "Remmel2013CatCla",
+        "issue": "8",
+        "issued": {
+            "date-parts": [
+                [
+                    2013,
+                    10
+                ]
+            ]
+        },
+        "page": "1587-1599",
+        "title": "Categorical, class-focused map patterns: Characterization and comparison",
+        "type": "article-journal",
+        "volume": "28"
+    },
+    {
+        "DOI": "10.1111/2041-210X.13076",
+        "author": [
+            {
+                "family": "Sciaini",
+                "given": "Marco"
+            },
+            {
+                "family": "Fritsch",
+                "given": "Matthias"
+            },
+            {
+                "family": "Scherer",
+                "given": "C\u00e9dric"
+            },
+            {
+                "family": "Simpkins",
+                "given": "Craig Eric"
+            }
+        ],
+        "container-title": "Methods in Ecology and Evolution",
+        "editor": [
+            {
+                "family": "Golding",
+                "given": "Nick"
+            }
+        ],
+        "id": "Sciaini2018NlmLan",
+        "issue": "11",
+        "issued": {
+            "date-parts": [
+                [
+                    2018,
+                    11
+                ]
+            ]
+        },
+        "page": "2240-2248",
+        "title": "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
+        "type": "article-journal",
+        "volume": "9"
+    },
+    {
+        "DOI": "10.1111/2041-210X.13076",
+        "author": [
+            {
+                "family": "Sciaini",
+                "given": "Marco"
+            },
+            {
+                "family": "Fritsch",
+                "given": "Matthias"
+            },
+            {
+                "family": "Scherer",
+                "given": "C\u00e9dric"
+            },
+            {
+                "family": "Simpkins",
+                "given": "Craig Eric"
+            }
+        ],
+        "container-title": "Methods in Ecology and Evolution",
+        "id": "Sciaini2018NlmLana",
+        "issue": "11",
+        "issued": {
+            "date-parts": [
+                [
+                    2018
+                ]
+            ]
+        },
+        "keyword": "artificial landscape,landscape generator,spatial patterns,spatial visualisation,virtual landscape",
+        "page": "2240-2248",
+        "title": "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
+        "type": "article-journal",
+        "volume": "9"
+    },
+    {
+        "DOI": "10.1038/sj.hdy.6800917",
+        "author": [
+            {
+                "family": "Storfer",
+                "given": "A."
+            },
+            {
+                "family": "Murphy",
+                "given": "M. A."
+            },
+            {
+                "family": "Evans",
+                "given": "J. S."
+            },
+            {
+                "family": "Goldberg",
+                "given": "C. S."
+            },
+            {
+                "family": "Robinson",
+                "given": "S."
+            },
+            {
+                "family": "Spear",
+                "given": "S. F."
+            },
+            {
+                "family": "Dezzani",
+                "given": "R."
+            },
+            {
+                "family": "Delmelle",
+                "given": "E."
+            },
+            {
+                "family": "Vierling",
+                "given": "L."
+            },
+            {
+                "family": "Waits",
+                "given": "L. P."
+            }
+        ],
+        "container-title": "Heredity",
+        "id": "Storfer2007PutLan",
+        "issue": "3",
+        "issued": {
+            "date-parts": [
+                [
+                    2007,
+                    3
+                ]
+            ]
+        },
+        "keyword": "Biomedicine,Cytogenetics,Ecology,Evolutionary Biology,general,Human Genetics,Plant Genetics and Genomics",
+        "page": "128-142",
+        "publisher": "Nature Publishing Group",
+        "title": "Putting the \u201clandscape\u201d in landscape genetics",
+        "type": "article-journal",
+        "volume": "98"
+    },
+    {
+        "DOI": "10.1023/A:1026156900092",
+        "author": [
+            {
+                "family": "Tinker",
+                "given": "D."
+            },
+            {
+                "family": "Romme",
+                "given": "W. H."
+            },
+            {
+                "family": "Despain",
+                "given": "D."
+            }
+        ],
+        "container-title": "Landscape Ecology",
+        "id": "Tinker2004HisRan",
+        "issued": {
+            "date-parts": [
+                [
+                    2004
+                ]
+            ]
+        },
+        "title": "Historic range of variability in landscape structure in subalpine forests of the Greater Yellowstone Area, USA",
+        "type": "article-journal"
+    },
+    {
+        "id": "UseMis",
+        "publisher": "https://www-jstor-org.proxy3.library.mcgill.ca/stable/3546007",
+        "title": "The Use and Misuse of Neutral Landscape Models in Ecology on JSTOR",
+        "type": ""
     }
 ]

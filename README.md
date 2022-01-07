@@ -28,6 +28,7 @@ and then apply masks and categorical classifcation to them.
 Ease of use with other julia packages
 
 Mask of neutral variable masked across quebec in 3 lines.
+
 ```
 using NeutralLandscapes
 using SimpleSDMLayers
@@ -45,8 +46,6 @@ plot(
     heatmap(rand(NearestNeighborCluster(0.5), size(layer), mask=qcmask); pltsettings),
     dpi=400
 )
-
-savefig("interoperable.png")
 ```
 
 ![todo](./figures/interoperable.png)

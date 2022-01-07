@@ -195,19 +195,28 @@ Soon to be a paper, maybe. TK authors, MKB,VB,RS,TP
 \section{Introduction}\label{introduction}}
 
 Neutral landscapes are increasingly used in ecological and evolutionary
-studies to provide a null expectation of the variance of a given metric
-over space.
+studies to provide a null expectation spatial variation of a given
+measurement. Originally developed to simulate the spatially
+autocorrelated data (\textbf{Gardner1987NeuMod?};
+\textbf{Milne1992SpaAgg?}), the have seen use in a wide range of
+disciplines: from landscape genetics (\textbf{Storfer2007PutLan?}), to
+landscape and spatial ecology (\textbf{Tinker2004HisRan?};
+\textbf{Remmel2013CatCla?}), and biogeography
+(\textbf{Albert2017BarDis?}).
 
-Wide range of disciplines: from landscape genetics {[}{]}, to spatial
-ecology {[}{]}, and biogeography {[}{]}.
-
+The two primary packages used to simulate neutral landscapes are
+\texttt{NLMR} in (the \texttt{R} language) (\textbf{Sciaini2018NlmLan?})
+and \texttt{NLMpy} (in Python; \textbf{Etherington2015NlmPyt?}). We
+present \texttt{NeutralLandscapes.jl}, a package in \texttt{Julia} for
+neutral landscapes which is faster than both above package. Here we
+demonstrate that \texttt{NeutralLandscapes.jl}, depending on the method,
+is orders of magnitude faster than previous neutral landscape packages.
 As biodiversity science becomes increasingly concerned with temporal
-change and its consequences, its clear there is a gap generating neutral
-landscapes that change over time. In this ms we present how
-\texttt{NeutralLandscapes.jl} is orders of magnitudes faster than
-packages \texttt{nlmpy} (in python) or \texttt{NLMR} (in R). In addition
-we then present a novel method for generating landscape change with
-prescribed levels of spatial and temporal autocorrelation.
+change and its consequences, its clear there is a gap in methodology in
+generating neutral landscapes that change over time. In addition we
+present a novel method for generating landscape change with prescribed
+levels of spatial and temporal autocorrelation, which is implemented in
+\texttt{NeutralLandscapes.jl}
 
 \hypertarget{software-overview}{%
 \section{Software Overview}\label{software-overview}}
@@ -216,175 +225,9 @@ This software can generate neutral landscapes using several methods,
 enables masking and works with other julia packages.
 
 fig.~\ref{fig:allmethods} shows a replica of Figure 1 from
-(\textbf{nlmpycite?}), which shows the capacity of the library to
-generate different types of neutral landscapes, and then apply masks and
-categorical classifcation to them.
-
-Table of methods.
-
-\begin{longtable}[]{@{}llllll@{}}
-\toprule
-\begin{minipage}[b]{0.35\columnwidth}\raggedright
-Model\strut
-\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
-nlmpy?\strut
-\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
-NLMR\strut
-\end{minipage} & \begin{minipage}[b]{0.33\columnwidth}\raggedright
-Description\strut
-\end{minipage} & \begin{minipage}[b]{0.02\columnwidth}\raggedright
-Reference\strut
-\end{minipage} & \begin{minipage}[b]{0.02\columnwidth}\raggedright
-Aliases\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-No gradient\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Each cell is drawn randomly\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Planar gradient\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-A gradient from low to high at a given angle\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Distance gradient\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Each cell is the distance between that cell and a location\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Random rectuangular cluster\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Covers the plane in random rectanges until covered\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Random element nearest-neighbor\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x*\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Discrete categories based on distance a set of \texttt{n} random
-points\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\texttt{nlm\_mosaictess}, k-means\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Random cluster nearest-neighbor\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Starts with \(n\) seed points and grows clusters probabilistically\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Random curds\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Gaussian Field\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Diamond-square\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Improvement on Diamond-square and fractal brownian motion.\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Perlin noise\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-Method for noise with ``smoother'' features than DS/MPD\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.35\columnwidth}\raggedright
-Mosaic random field\strut
-\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-x\strut
-\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
-\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
+(\textbf{Etherington2015NlmPyt?}), which shows the capacity of the
+library to generate different types of neutral landscapes, and then
+apply masks and categorical classifcation to them.
 
 \begin{figure}
 \hypertarget{fig:allmethods}{%
@@ -394,11 +237,6 @@ x\strut
 source, supplied in less than 40 lines of code.}\label{fig:allmethods}
 }
 \end{figure}
-
-\hypertarget{what-methods-have-been-called-different-things-but-are-actually-the-same-thing}{%
-\subsection{What methods have been called different things but are
-actually the same
-thing?}\label{what-methods-have-been-called-different-things-but-are-actually-the-same-thing}}
 
 \hypertarget{interoperability}{%
 \subsection{Interoperability}\label{interoperability}}
@@ -488,6 +326,8 @@ entry of the zscore of the \(\delta\) matrix
 \hypertarget{spatiotemporal-autocorrelation}{%
 \subsubsection{Spatiotemporal
 autocorrelation}\label{spatiotemporal-autocorrelation}}
+
+\(f_{ST}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
 
 \hypertarget{rescaling-to-mimic-real-data}{%
 \subsection{Rescaling to mimic real

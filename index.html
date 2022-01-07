@@ -197,127 +197,14 @@
         
         <article>
             <h1 id="introduction">Introduction</h1>
-            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation of the variance of a given metric over space.</p>
-            <p>Wide range of disciplines: from landscape genetics [], to spatial ecology [], and biogeography [].</p>
-            <p>As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap generating neutral landscapes that change over time. In this ms we present how <code>NeutralLandscapes.jl</code> is orders of magnitudes faster than packages <code>nlmpy</code> (in python) or <code>NLMR</code> (in R). In addition we then present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation.</p>
+            <p>Neutral landscapes are increasingly used in ecological and evolutionary studies to provide a null expectation spatial variation of a given measurement. Originally developed to simulate the spatially autocorrelated data <span class="citation" data-cites="Gardner1987NeuMod Milne1992SpaAgg">(<strong>Gardner1987NeuMod?</strong>; <strong>Milne1992SpaAgg?</strong>)</span>, the have seen use in a wide range of disciplines: from landscape genetics <span class="citation" data-cites="Storfer2007PutLan">(<strong>Storfer2007PutLan?</strong>)</span>, to landscape and spatial ecology <span class="citation" data-cites="Tinker2004HisRan Remmel2013CatCla">(<strong>Tinker2004HisRan?</strong>; <strong>Remmel2013CatCla?</strong>)</span>, and biogeography <span class="citation" data-cites="Albert2017BarDis">(<strong>Albert2017BarDis?</strong>)</span>.</p>
+            <p>The two primary packages used to simulate neutral landscapes are <code>NLMR</code> in (the <code>R</code> language) <span class="citation" data-cites="Sciaini2018NlmLan">(<strong>Sciaini2018NlmLan?</strong>)</span> and <code>NLMpy</code> <span class="citation" data-cites="Etherington2015NlmPyt">(in Python; <strong>Etherington2015NlmPyt?</strong>)</span>. We present <code>NeutralLandscapes.jl</code>, a package in <code>Julia</code> for neutral landscapes which is faster than both above package. Here we demonstrate that <code>NeutralLandscapes.jl</code>, depending on the method, is orders of magnitude faster than previous neutral landscape packages. As biodiversity science becomes increasingly concerned with temporal change and its consequences, its clear there is a gap in methodology in generating neutral landscapes that change over time. In addition we present a novel method for generating landscape change with prescribed levels of spatial and temporal autocorrelation, which is implemented in <code>NeutralLandscapes.jl</code></p>
             <h1 id="software-overview">Software Overview</h1>
             <p>This software can generate neutral landscapes using several methods, enables masking and works with other julia packages.</p>
-            <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="nlmpycite">(<strong>nlmpycite?</strong>)</span>, which shows the capacity of the library to generate different types of neutral landscapes, and then apply masks and categorical classifcation to them.</p>
-            <p>Table of methods.</p>
-            <table>
-            <colgroup>
-            <col style="width: 41%" />
-            <col style="width: 7%" />
-            <col style="width: 5%" />
-            <col style="width: 39%" />
-            <col style="width: 2%" />
-            <col style="width: 1%" />
-            </colgroup>
-            <thead>
-            <tr class="header">
-            <th>Model</th>
-            <th>nlmpy?</th>
-            <th>NLMR</th>
-            <th>Description</th>
-            <th>Reference</th>
-            <th>Aliases</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="odd">
-            <td>No gradient</td>
-            <td>x</td>
-            <td>x</td>
-            <td>Each cell is drawn randomly</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="even">
-            <td>Planar gradient</td>
-            <td>x</td>
-            <td>x</td>
-            <td>A gradient from low to high at a given angle</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="odd">
-            <td>Distance gradient</td>
-            <td>x</td>
-            <td>x</td>
-            <td>Each cell is the distance between that cell and a location</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="even">
-            <td>Random rectuangular cluster</td>
-            <td>x</td>
-            <td>x</td>
-            <td>Covers the plane in random rectanges until covered</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="odd">
-            <td>Random element nearest-neighbor</td>
-            <td>x</td>
-            <td>x*</td>
-            <td>Discrete categories based on distance a set of <code>n</code> random points</td>
-            <td></td>
-            <td><code>nlm_mosaictess</code>, k-means</td>
-            </tr>
-            <tr class="even">
-            <td>Random cluster nearest-neighbor</td>
-            <td>x</td>
-            <td>x</td>
-            <td>Starts with <span class="math inline"><em>n</em></span> seed points and grows clusters probabilistically</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="odd">
-            <td>Random curds</td>
-            <td></td>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="even">
-            <td>Gaussian Field</td>
-            <td></td>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="odd">
-            <td>Diamond-square</td>
-            <td></td>
-            <td></td>
-            <td>Improvement on Diamond-square and fractal brownian motion.</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="even">
-            <td>Perlin noise</td>
-            <td>x</td>
-            <td></td>
-            <td>Method for noise with “smoother” features than DS/MPD</td>
-            <td></td>
-            <td></td>
-            </tr>
-            <tr class="odd">
-            <td>Mosaic random field</td>
-            <td></td>
-            <td>x</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            </tr>
-            </tbody>
-            </table>
+            <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="Etherington2015NlmPyt">(<strong>Etherington2015NlmPyt?</strong>)</span>, which shows the capacity of the library to generate different types of neutral landscapes, and then apply masks and categorical classifcation to them.</p>
             <figure>
             <img src="./figures/figure1.png" id="fig:allmethods" alt="Figure 1: Recreation of the figure in nlmpy paper and the source, supplied in less than 40 lines of code." /><figcaption aria-hidden="true">Figure 1: Recreation of the figure in <code>nlmpy</code> paper and the source, supplied in less than 40 lines of code.</figcaption>
             </figure>
-            <h2 id="what-methods-have-been-called-different-things-but-are-actually-the-same-thing">What methods have been called different things but are actually the same thing?</h2>
             <h2 id="interoperability">Interoperability</h2>
             <p>Ease of use with other julia packages</p>
             <p>Mask of neutral variable masked across quebec in 3 lines.</p>
@@ -359,6 +246,7 @@
             <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline">[<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span>: the <span class="math inline">(<em>i</em>, <em>j</em>)</span> entry of the zscore of the <span class="math inline"><em>δ</em></span> matrix</p>
             <p><span class="math inline"><em>f</em><sub><em>S</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
             <h3 id="spatiotemporal-autocorrelation">Spatiotemporal autocorrelation</h3>
+            <p><span class="math inline"><em>f</em><sub><em>S</em><em>T</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
             <h2 id="rescaling-to-mimic-real-data">Rescaling to mimic real data</h2>
             <h1 id="discussion">Discussion</h1>
             <h1 id="references">References</h1>

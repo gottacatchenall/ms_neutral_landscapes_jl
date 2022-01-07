@@ -30,19 +30,18 @@ Table of methods.
 
 | Model 	                               | nlmpy? | NLMR | Description                            | Reference | Aliases |
 |------------------------------------------|--------|------|----------------------------------------|---        | --      |
-| No gradient	                           | x      | x    |                                        |           |         |
-| Planar gradient                          | x      | x    | 	                                    |           |         |
-| Distance gradient                        | x      | x    |     	                                |           |         |
-| Random rectuangular cluster              | x      | x    |     	                                |           |         |
-| Random element nearest-neighbor          | x      | x*   |     	                                |           | `nlm_mosaictess`, k-means |    
-| Random cluster nearest-neighbor          | x      | x    |     	                                |           |         |
+| No gradient	                           | x      | x    | Each cell is drawn randomly            |           |         |
+| Planar gradient                          | x      | x    | A gradient from low to high at a given angle                |           |         |
+| Distance gradient                        | x      | x    | Each cell is the distance between that cell and a location|           |         |
+| Random rectuangular cluster              | x      | x    | Covers the plane in random rectanges until covered            |           |        |
+| Random element nearest-neighbor          | x      | x*   | Discrete categories based on distance a set of `n` random points  |           | `nlm_mosaictess`, k-means |    
+| Random cluster nearest-neighbor          | x      | x    | Starts with $n$ seed points and grows clusters probabilistically    	                                |           |         |
 | Random curds                             |        | x    |     	                                |
-| Gaussian Field                           |        | x    | | |
-| Perlin noise                             | x      |      | | | 
-| Diamond-square                           |        |      | | |
+| Gaussian Field                           |        | x    |   | |
+| Diamond-square                           |        |      | Improvement on Diamond-square and fractal brownian motion.| |
+| Perlin noise                             | x      |      | Method for noise with "smoother" features than DS/MPD | | 
 | Mosaic random field                      |        | x    | | |
 
-In
 
 ![Recreation of the figure in `nlmpy` paper and the source, supplied in less than 40 lines of code.](./figures/figure1.png){#fig:allmethods}
 
@@ -54,6 +53,28 @@ In
 Ease of use with other julia packages
 
 Mask of neutral variable masked across quebec in 3 lines.
+```
+using NeutralLandscapes
+using SimpleSDMLayers
+
+quebec = SimpleSDMPredictor(WorldClim, BioClim; left=-90., right=-50., top=75., bottom=40.)
+qcmask = fill(true, size(quebec)) 
+qcmask[findall(isnothing, quebec.grid)] .= false
+
+pltsettings = (cbar=:none, frame=:box)
+
+plot(
+    heatmap(rand(MidpointDisplacement(0.8), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(PlanarGradient(), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(PerlinNoise((4,4)), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(NearestNeighborCluster(0.5), size(layer), mask=qcmask); pltsettings),
+    dpi=400
+)
+
+savefig("interoperable.png")
+```
+
+![todo](./figures/interoperable.png)
 
 # Benchmark comparison to `nlmpy` and `NLMR`
 
@@ -66,29 +87,36 @@ Second we compare these performance of each of these software packages as raster
 `Julia` even outperforms the `NLMR` via C++ implemention of a particularly slow neutral landscape method (midpoint displacement). 
 
 
-**Fig 2**: Benchmark comparison of selected methods in each of the three languages
-
-In fig 2 we should a selection of neutral landscape generators (random, edge gradient, perlin noise, distance-gradient)
-
-## MPD comparison
-
-Why use this particular generator as the comparison? It's slow. So slow that NLMR
-implements it in C++. (NLMR implements both MPD, neighbor, randrect, and random neighboorhood in c++).  Still these three algorithms,
-which cosinsts of 3/16 of NLMR's alg implementations, constitute 33% of its codebase.
-
-In this section we show our implementation of MPD is faster than NLMR's C++ MPD scales until
-the  asyptotic limit imposed by the $O(n^2)$ scaling of the raster
-
-
-![Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)](./figures/figure3.png)
+![todo](./figures/benchmark.png)
 
 # Generating dynamic neutral landscapes
 
 We implement methods for generating change that are temporally autocorrelated,
 spatially autocorrelated, or both.
 
-$M_t = f(M_{t-1})$
+$M_t = M_{t-1} + f(M(t-1))$
 
+## Models of change
+
+### Directional 
+
+### Temporally autocorrelation
+
+$r$: rate, $v$: variability, $U$ matrix of draws from standard $\text{Normal}(0,1)$
+
+$f_{T}(M_{ij}) = r + vU_{ij}$
+
+### Spatial autocorrelation
+$r$: rate, $v$: variability, $[Z(\delta)]_{ij}$: the $(i,j)$ entry of the zscore of the $\delta$ matrix
+
+$f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}$
+
+### Spatiotemporal autocorrelation
+
+
+
+
+## Rescaling to mimic real data 
 
 # Discussion 
 

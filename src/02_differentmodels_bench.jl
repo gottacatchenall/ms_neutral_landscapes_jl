@@ -1,116 +1,79 @@
 using DataFrames, CSV, DataFramesMeta
 using Plots
+using LaTeXStrings
+using Plots.PlotMeasures
+
+jl = CSV.read("src/benchmarking/artifacts/julia.csv", DataFrame)
+r = CSV.read("src/benchmarking/artifacts/r.csv", DataFrame) 
+r = filter(x-> "NA" ∉ x, r)
+r.sidelength = parse.(Float32, r.sidelength)
+r.meantime = parse.(Float32, r.meantime)
+
+py = CSV.read("src/benchmarking/artifacts/py.csv", DataFrame) 
+
+jlsets = (label="", mc=:dodgerblue)
+rsets = (label="", mc=:mediumpurple)
+pysets = (label="", mc=:green)
 
 
-jl = CSV.read("src/benchmarking/juliabench_differentmodels.csv", DataFrame)
-r = CSV.read("src/benchmarking/rbench_differentmodels.csv", DataFrame)
-py = CSV.read("src/benchmarking/pybench_differentmodels.csv", DataFrame)
+function makeplt(jl, r, py, name, titlestr)
 
-r.time = r.time_nanoseconds ./ 10^9
-jl.time = jl.time_nanoseconds ./ 10^9
-py.time = py.mean_execution_time
+    jldf, rdf, pydf = map(df->filter(x->x.model==name,df), [jl,r,py])
 
+    juliacolor = :dodgerblue
+    pycolor = :forestgreen
+    rcolor = :mediumpurple
 
-jlsets = (label="", mc=:dodgerblue, ma=0.01)
-rsets = (label="", mc=:mediumpurple, ma=0.01)
-pysets = (label="", mc=:green, ma=0.01)
+    markersettings = (ms=5,msw=2,ma=0.9)
+    linesettings = (ls=1.5)
+    ugh = [L"2^3", L"2^4", L"2^5", L"2^6", L"2^7", L"2^8", L"2^9", L"2^{10}", L"2^{11}", L"2^{12}"]
+ylab = [L"10^{-5}",L"10^{-4}",L"10^{-3}",L"10^{-2}",L"10^{-1}",L"10^{0}", L"10^{1}", L"10^{2}",  ]
 
-plot(xlim=(0,7), dpi=300, size=(600,300), frame=:box, legend=:outerright, yscale=:log10, xrotation=-90, ylim=(10^-3.5, 0.1), xticks=(0:7, ["", "random", "edge gradient", "planar grad", "NNE", "NNC","Perlin Noise"]))
+    plot(log2.(jldf.sidelength), jldf.meantime; linesettings)
+    title!(titlestr)
+    scatter!(log2.(jldf.sidelength), jldf.meantime,
+        label="",
+        fontfamily = "computer modern",
+        xlabel="Raster side length",
+        ylabel="Execution time (seconds)",
+        frame=:box,
+        legend=:none,
+        tickfontsize=10,
+        mc=juliacolor,
+        msc=juliacolor,
+        yscale=:log10, 
+        ylim=(10^-5, 10^2),
+        xlim=(3,12.1),
+        yticks=([10.0^i for i in -5:2], ylab),
+        xticks=(3:12,ugh),
+        dpi=500,
+        size=(300, 300); markersettings...)
 
-jl_random = filter(r->r.model=="random", jl) |> DataFrame
-py_random = filter(r->r.method=="random", py) |> DataFrame
-r_random = filter(r->r.model=="random", r) |> DataFrame
-scatter!(
-    [1 for i in 1:length(jl_random.time)] .- 0.2rand(1000), 
-    jl_random.time_nanoseconds ./ 10^9,
-    ;jlsets...)
-
-scatter!(
-    [1 for i in 1:length(r_random.time)] .- 0.1.-0.2rand(1000),  
-    r_random.time_nanoseconds ./ 10^9,
-    ; rsets...)
-
-scatter!(
-    [1 for i in 1:length(jl_random.time_nanoseconds)] .+ 0.2rand(1000), 
-    py_random.time,
-    ; pysets...)
-
-jl_eg = filter(r->r.model=="edge gradient", jl) |> DataFrame
-py_eg = filter(r->r.method=="eg", py) |> DataFrame
-r_eg = filter(r->r.model=="edge gradient", r) |> DataFrame
-scatter!(
-    [2 for i in 1:length(jl_random.time_nanoseconds)] .+ 0.2rand(1000), 
-    jl_eg.time ,
-    ; jlsets...)
-scatter!(
-    [2 for i in 1:length(r_random.time_nanoseconds)].+ 0.2rand(1000) .- 0.1, 
-    r_eg.time,
-    ; rsets...)
-scatter!(
-    [2 for i in 1:length(jl_random.time_nanoseconds)] .- 0.2rand(1000) .+ 0.1, 
-    py_eg.time,
-    ; pysets...)
+    plot!(log2.(rdf.sidelength), rdf.meantime, lc=rcolor; linesettings)
+    scatter!(log2.(rdf.sidelength), rdf.meantime, msc=rcolor; markersettings)
+    
+    plot!(pydf.size, pydf.meantime, lc=pycolor; linesettings)
+    scatter!(pydf.size, pydf.meantime, msc=pycolor; markersettings) 
+end
 
 
-jl_pg = filter(r->r.model=="planar gradient", jl) |> DataFrame
-py_pg = filter(r->r.method=="pg", py) |> DataFrame
-#r_pg = filter(r->r.model=="midpoint displacement", r) |> DataFrame
-scatter!(
-    [3 for i in 1:length(jl_pg.time)] .+ 0.2rand(length(jl_pg.time_nanoseconds)), 
-    jl_pg.time,
-    ; jlsets...)
-scatter!(
-    [3 for i in 1:length(py_pg.time)] .- 0.2rand(1000) .+ 0.1, 
-    py_pg.time,
-    ; pysets...)
+legendplot = scatter(frame=:none, msc=:forestgreen, axis=:none, xlim=(0,1), ylim=(0,1),[-1,-1], size=(500,500), dpi=300, ms=2, mc=:forestgreen, label="NLMpy")
+scatter!(legendplot, [-1,-1], ms=2, msc=:mediumpurple, mc=:mediumpurple, label="NLMR")
+scatter!(legendplot,[-1,-1], ms=2, msc=:dodgerblue, mc=:dodgerblue, label="NeutralLandscapes.jl")
+
+l = @layout [ a{0.05w} grid(2,3) ]
+
+plt =plot(
+    legendplot, 
+    makeplt(jl, r, py, "random", "Random"),
+    makeplt(jl, r, py, "dg", "Distance Gradient"),
+    makeplt(jl, r, py, "eg", "Edge Gradient"),
+    makeplt(jl, r, py, "perlin", "Perlin Noise"),
+    makeplt(jl, r, py, "mpd", "Midpoint Displacement"),
+    makeplt(jl, r, py, "nne", "Nearest Neighbor Element"),
+    size=(1400, 700),
+    margin=10mm,
+    layout=l)
 
 
-
-
-jl_nne = filter(r->r.model=="nearest neighbor element", jl) |> DataFrame
-py_nne = filter(r->r.method=="renn", py) |> DataFrame
-r_nne = filter(r->r.model=="nearest neighbor element", r) |> DataFrame
-scatter!(
-    [4 for i in 1:length(jl_mpd.time)] .+ 0.2rand(length(jl_mpd.time_nanoseconds)), 
-    jl_nne.time,
-    ; jlsets...)
-scatter!(
-    [4 for i in 1:length(py_mpd.time)].+ 0.2rand(1000) .- 0.1, 
-    py_nne.time,
-    ; pysets...)
-scatter!(
-    [4 for i in 1:length(r_mpd.time)] .- 0.2rand(1000) .+ 0.1, 
-    r_nne.time,
-    ; rsets...)
-
-
-
-jl_nnc = filter(r->r.model=="nearest neighbor cluster", jl) |> DataFrame
-py_nnc = filter(r->r.method=="rcnn", py) |> DataFrame
-scatter!(
-    [5. for i in 1:length(jl_nnc.time)],
-    jl_nnc.time,
-    ; jlsets...)
-scatter!(
-    [5 for i in 1:length(py_nnc.time)].+ 0.2rand(1000), 
-    py_nnc.time,
-    ; pysets...)
-
-
-jl_perlin = filter(r->r.model=="perlin", jl) |> DataFrame
-py_perlin = filter(r->r.method=="perlin", py) |> DataFrame
-scatter!(
-    [6 for i in 1:length(jl_perlin.time)] .- 0.2rand(length(jl_perlin.time_nanoseconds)), 
-    jl_nne.time,
-    ; jlsets...)
-scatter!(
-    [6 for i in 1:length(py_perlin.time)].+ 0.2rand(1000), 
-    py_perlin.time,
-    ; rsets...)
-
-
-
-
-scatter!([1], [100], mc=:dodgerblue, label="Julia")
-scatter!([1], [100], mc=:mediumpurple, label="R")
-scatter!([1], [100], mc=:green, label="Python")
+savefig(plt, "benchmark.png", )

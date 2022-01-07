@@ -27,7 +27,7 @@ function makeplt(jl, r, py, name, titlestr)
     markersettings = (ms=5,msw=2,ma=0.9)
     linesettings = (ls=1.5)
     ugh = [L"2^3", L"2^4", L"2^5", L"2^6", L"2^7", L"2^8", L"2^9", L"2^{10}", L"2^{11}", L"2^{12}"]
-ylab = [L"10^{-5}",L"10^{-4}",L"10^{-3}",L"10^{-2}",L"10^{-1}",L"10^{0}", L"10^{1}", L"10^{2}",  ]
+ylab = [L"10^{-6}",L"10^{-5}",L"10^{-4}",L"10^{-3}",L"10^{-2}",L"10^{-1}",L"10^{0}", L"10^{1}", L"10^{2}",  ]
 
     plot(log2.(jldf.sidelength), jldf.meantime; linesettings)
     title!(titlestr)
@@ -42,9 +42,9 @@ ylab = [L"10^{-5}",L"10^{-4}",L"10^{-3}",L"10^{-2}",L"10^{-1}",L"10^{0}", L"10^{
         mc=juliacolor,
         msc=juliacolor,
         yscale=:log10, 
-        ylim=(10^-5, 10^2),
+        ylim=(10^-6, 10^1),
         xlim=(3,12.1),
-        yticks=([10.0^i for i in -5:2], ylab),
+        yticks=([10.0^i for i in -6:1], ylab),
         xticks=(3:12,ugh),
         dpi=500,
         size=(300, 300); markersettings...)

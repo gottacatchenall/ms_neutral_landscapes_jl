@@ -5,7 +5,7 @@ using DataFrames, CSV
 using StatsBase
 using Statistics
 
-ns = 1000
+ns = 250
 df = DataFrame(model=[],sidelength=[], meantime=[], stdtime=[])
 
 
@@ -13,13 +13,13 @@ for s in 3:12
     @show s
     rect = falses(2^s,2^s)
     rect[1:5,1:5] .= true    
-    pg = @benchmark rand(PlanarGradient(), siz) samples=ns setup=(siz=(2^$s, 2^$s))
-    dg = @benchmark rand(DistanceGradient(findall(vec(r)))) setup=(siz=(2^$s, 2^$s), r=$rect)
-    #eg = @benchmark rand(EdgeGradient(), siz)  samples=ns setup=(siz=(2^$s, 2^$s))
-    random = @benchmark rand(NoGradient(), siz)  samples=ns setup=(siz=(2^$s, 2^$s))
-    mpd = @benchmark rand(MidpointDisplacement(0.75), siz)  samples=ns setup=(siz=(2^$s, 2^$s))
-    nne = @benchmark rand(NearestNeighborElement(10), siz) samples=ns setup=(siz=(2^$s, 2^$s))
-    perlin = @benchmark rand(PerlinNoise((4,4)), siz) samples=ns setup=(siz=(2^$s, 2^$s))
+    pg = @benchmark rand(PlanarGradient(), 2^$s, 2^$s) samples=ns 
+    dg = @benchmark rand(DistanceGradient(findall(vec(r))), 2^$s, 2^$s) samples=ns setup=(r=$rect)
+    eg = @benchmark rand(EdgeGradient(), 2^$s, 2^$s)  samples=ns 
+    random = @benchmark rand(NoGradient(), 2^$s, 2^$s)  samples=ns 
+    mpd = @benchmark rand(MidpointDisplacement(0.75), 2^$s, 2^$s)  samples=ns 
+    nne = @benchmark rand(NearestNeighborElement(10), 2^$s, 2^$s) samples=ns 
+    perlin = @benchmark rand(PerlinNoise((4,4)), 2^$s, 2^$s) samples=ns 
 
     models = Dict("pg" => pg, 
     "eg" => eg, 

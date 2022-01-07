@@ -68,13 +68,6 @@ plot(
 
 It's fast. As the scale and resolution of raster data increases,
 neutral models must be able to scale to match those data dimensions.
-Here we provide two benchmark tests. First a comparison of the speed
-variety of methods from each `NeutralLandscapes.jl`, `NLMR`, and
-`nlmpy`. Second we compare these performance of each of these software
-packages as rasters become larger. We show that `Julia` even
-outperforms the `NLMR` via C++ implemention of a particularly slow
-neutral landscape method (midpoint displacement).
-
 
 ![todo](./figures/benchmark.png)
 

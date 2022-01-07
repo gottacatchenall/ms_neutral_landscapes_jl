@@ -280,25 +280,167 @@ Table of methods.
 
 \begin{longtable}[]{@{}llllll@{}}
 \toprule
-Model & nlmpy? & NLMR & Description & Reference & Aliases\tabularnewline
+\begin{minipage}[b]{0.35\columnwidth}\raggedright
+Model\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright
+nlmpy?\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
+NLMR\strut
+\end{minipage} & \begin{minipage}[b]{0.33\columnwidth}\raggedright
+Description\strut
+\end{minipage} & \begin{minipage}[b]{0.02\columnwidth}\raggedright
+Reference\strut
+\end{minipage} & \begin{minipage}[b]{0.02\columnwidth}\raggedright
+Aliases\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-No gradient & x & x & & &\tabularnewline
-Planar gradient & x & x & & &\tabularnewline
-Distance gradient & x & x & & &\tabularnewline
-Random rectuangular cluster & x & x & & &\tabularnewline
-Random element nearest-neighbor & x & x* & & & \texttt{nlm\_mosaictess},
-k-means\tabularnewline
-Random cluster nearest-neighbor & x & x & & &\tabularnewline
-Random curds & & x & & &\tabularnewline
-Gaussian Field & & x & & &\tabularnewline
-Perlin noise & x & & & &\tabularnewline
-Diamond-square & & & & &\tabularnewline
-Mosaic random field & & x & & &\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+No gradient\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Each cell is drawn randomly\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Planar gradient\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+A gradient from low to high at a given angle\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Distance gradient\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Each cell is the distance between that cell and a location\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Random rectuangular cluster\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Covers the plane in random rectanges until covered\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Random element nearest-neighbor\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x*\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Discrete categories based on distance a set of \texttt{n} random
+points\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\texttt{nlm\_mosaictess}, k-means\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Random cluster nearest-neighbor\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Starts with \(n\) seed points and grows clusters probabilistically\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Random curds\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Gaussian Field\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Diamond-square\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Improvement on Diamond-square and fractal brownian motion.\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Perlin noise\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+Method for noise with ``smoother'' features than DS/MPD\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.35\columnwidth}\raggedright
+Mosaic random field\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+x\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.02\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
-
-In
 
 \begin{figure}
 \hypertarget{fig:allmethods}{%
@@ -321,6 +463,33 @@ Ease of use with other julia packages
 
 Mask of neutral variable masked across quebec in 3 lines.
 
+\begin{verbatim}
+using NeutralLandscapes
+using SimpleSDMLayers
+
+quebec = SimpleSDMPredictor(WorldClim, BioClim; left=-90., right=-50., top=75., bottom=40.)
+qcmask = fill(true, size(quebec)) 
+qcmask[findall(isnothing, quebec.grid)] .= false
+
+pltsettings = (cbar=:none, frame=:box)
+
+plot(
+    heatmap(rand(MidpointDisplacement(0.8), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(PlanarGradient(), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(PerlinNoise((4,4)), size(layer), mask=qcmask); pltsettings),
+    heatmap(rand(NearestNeighborCluster(0.5), size(layer), mask=qcmask); pltsettings),
+    dpi=400
+)
+
+savefig("interoperable.png")
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{./figures/interoperable.png}
+\caption{todo}
+\end{figure}
+
 \hypertarget{benchmark-comparison-to-nlmpy-and-nlmr}{%
 \section{\texorpdfstring{Benchmark comparison to \texttt{nlmpy} and
 \texttt{NLMR}}{Benchmark comparison to nlmpy and NLMR}}\label{benchmark-comparison-to-nlmpy-and-nlmr}}
@@ -334,31 +503,10 @@ software packages as rasters become larger. We show that \texttt{Julia}
 even outperforms the \texttt{NLMR} via C++ implemention of a
 particularly slow neutral landscape method (midpoint displacement).
 
-\textbf{Fig 2}: Benchmark comparison of selected methods in each of the
-three languages
-
-In fig 2 we should a selection of neutral landscape generators (random,
-edge gradient, perlin noise, distance-gradient)
-
-\hypertarget{mpd-comparison}{%
-\subsection{MPD comparison}\label{mpd-comparison}}
-
-Why use this particular generator as the comparison? It's slow. So slow
-that NLMR implements it in C++. (NLMR implements both MPD, neighbor,
-randrect, and random neighboorhood in c++). Still these three
-algorithms, which cosinsts of 3/16 of NLMR's alg implementations,
-constitute 33\% of its codebase.
-
-In this section we show our implementation of MPD is faster than NLMR's
-C++ MPD scales until the asyptotic limit imposed by the \(O(n^2)\)
-scaling of the raster
-
 \begin{figure}
 \centering
-\includegraphics{./figures/figure3.png}
-\caption{Comparison of speed of generating a midpoint displacement
-neutral landscape (y-axis) against raster size (measured as length of
-the size of a square raster, x-axis)}
+\includegraphics{./figures/benchmark.png}
+\caption{todo}
 \end{figure}
 
 \hypertarget{generating-dynamic-neutral-landscapes}{%
@@ -368,7 +516,38 @@ landscapes}\label{generating-dynamic-neutral-landscapes}}
 We implement methods for generating change that are temporally
 autocorrelated, spatially autocorrelated, or both.
 
-\(M_t = f(M_{t-1})\)
+\(M_t = M_{t-1} + f(M(t-1))\)
+
+\hypertarget{models-of-change}{%
+\subsection{Models of change}\label{models-of-change}}
+
+\hypertarget{directional}{%
+\subsubsection{Directional}\label{directional}}
+
+\hypertarget{temporally-autocorrelation}{%
+\subsubsection{Temporally
+autocorrelation}\label{temporally-autocorrelation}}
+
+\(r\): rate, \(v\): variability, \(U\) matrix of draws from standard
+\(\text{Normal}(0,1)\)
+
+\(f_{T}(M_{ij}) = r + vU_{ij}\)
+
+\hypertarget{spatial-autocorrelation}{%
+\subsubsection{Spatial autocorrelation}\label{spatial-autocorrelation}}
+
+\(r\): rate, \(v\): variability, \([Z(\delta)]_{ij}\): the \((i,j)\)
+entry of the zscore of the \(\delta\) matrix
+
+\(f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
+
+\hypertarget{spatiotemporal-autocorrelation}{%
+\subsubsection{Spatiotemporal
+autocorrelation}\label{spatiotemporal-autocorrelation}}
+
+\hypertarget{rescaling-to-mimic-real-data}{%
+\subsection{Rescaling to mimic real
+data}\label{rescaling-to-mimic-real-data}}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}

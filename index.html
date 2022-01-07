@@ -205,6 +205,14 @@
             <p>fig. 1 shows a replica of Figure 1 from <span class="citation" data-cites="nlmpycite">(<strong>nlmpycite?</strong>)</span>, which shows the capacity of the library to generate different types of neutral landscapes, and then apply masks and categorical classifcation to them.</p>
             <p>Table of methods.</p>
             <table>
+            <colgroup>
+            <col style="width: 41%" />
+            <col style="width: 7%" />
+            <col style="width: 5%" />
+            <col style="width: 39%" />
+            <col style="width: 2%" />
+            <col style="width: 1%" />
+            </colgroup>
             <thead>
             <tr class="header">
             <th>Model</th>
@@ -220,7 +228,7 @@
             <td>No gradient</td>
             <td>x</td>
             <td>x</td>
-            <td></td>
+            <td>Each cell is drawn randomly</td>
             <td></td>
             <td></td>
             </tr>
@@ -228,7 +236,7 @@
             <td>Planar gradient</td>
             <td>x</td>
             <td>x</td>
-            <td></td>
+            <td>A gradient from low to high at a given angle</td>
             <td></td>
             <td></td>
             </tr>
@@ -236,7 +244,7 @@
             <td>Distance gradient</td>
             <td>x</td>
             <td>x</td>
-            <td></td>
+            <td>Each cell is the distance between that cell and a location</td>
             <td></td>
             <td></td>
             </tr>
@@ -244,7 +252,7 @@
             <td>Random rectuangular cluster</td>
             <td>x</td>
             <td>x</td>
-            <td></td>
+            <td>Covers the plane in random rectanges until covered</td>
             <td></td>
             <td></td>
             </tr>
@@ -252,7 +260,7 @@
             <td>Random element nearest-neighbor</td>
             <td>x</td>
             <td>x*</td>
-            <td></td>
+            <td>Discrete categories based on distance a set of <code>n</code> random points</td>
             <td></td>
             <td><code>nlm_mosaictess</code>, k-means</td>
             </tr>
@@ -260,7 +268,7 @@
             <td>Random cluster nearest-neighbor</td>
             <td>x</td>
             <td>x</td>
-            <td></td>
+            <td>Starts with <span class="math inline"><em>n</em></span> seed points and grows clusters probabilistically</td>
             <td></td>
             <td></td>
             </tr>
@@ -281,18 +289,18 @@
             <td></td>
             </tr>
             <tr class="odd">
-            <td>Perlin noise</td>
-            <td>x</td>
+            <td>Diamond-square</td>
             <td></td>
             <td></td>
+            <td>Improvement on Diamond-square and fractal brownian motion.</td>
             <td></td>
             <td></td>
             </tr>
             <tr class="even">
-            <td>Diamond-square</td>
+            <td>Perlin noise</td>
+            <td>x</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>Method for noise with “smoother” features than DS/MPD</td>
             <td></td>
             <td></td>
             </tr>
@@ -306,7 +314,6 @@
             </tr>
             </tbody>
             </table>
-            <p>In</p>
             <figure>
             <img src="./figures/figure1.png" id="fig:allmethods" alt="Figure 1: Recreation of the figure in nlmpy paper and the source, supplied in less than 40 lines of code." /><figcaption aria-hidden="true">Figure 1: Recreation of the figure in <code>nlmpy</code> paper and the source, supplied in less than 40 lines of code.</figcaption>
             </figure>
@@ -314,19 +321,45 @@
             <h2 id="interoperability">Interoperability</h2>
             <p>Ease of use with other julia packages</p>
             <p>Mask of neutral variable masked across quebec in 3 lines.</p>
+            <pre><code>using NeutralLandscapes
+            using SimpleSDMLayers
+
+            quebec = SimpleSDMPredictor(WorldClim, BioClim; left=-90., right=-50., top=75., bottom=40.)
+            qcmask = fill(true, size(quebec)) 
+            qcmask[findall(isnothing, quebec.grid)] .= false
+
+            pltsettings = (cbar=:none, frame=:box)
+
+            plot(
+                heatmap(rand(MidpointDisplacement(0.8), size(layer), mask=qcmask); pltsettings),
+                heatmap(rand(PlanarGradient(), size(layer), mask=qcmask); pltsettings),
+                heatmap(rand(PerlinNoise((4,4)), size(layer), mask=qcmask); pltsettings),
+                heatmap(rand(NearestNeighborCluster(0.5), size(layer), mask=qcmask); pltsettings),
+                dpi=400
+            )
+
+            savefig(&quot;interoperable.png&quot;)</code></pre>
+            <figure>
+            <img src="./figures/interoperable.png" alt="todo" /><figcaption aria-hidden="true">todo</figcaption>
+            </figure>
             <h1 id="benchmark-comparison-to-nlmpy-and-nlmr">Benchmark comparison to <code>nlmpy</code> and <code>NLMR</code></h1>
             <p>It’s fast. As the scale and resolution of raster data increases, neutral models must be able to scale to match those data dimensions. Here we provide two benchmark tests. First a comparison of the speed variety of methods from each <code>NeutralLandscapes.jl</code>, <code>NLMR</code>, and <code>nlmpy</code>. Second we compare these performance of each of these software packages as rasters become larger. We show that <code>Julia</code> even outperforms the <code>NLMR</code> via C++ implemention of a particularly slow neutral landscape method (midpoint displacement).</p>
-            <p><strong>Fig 2</strong>: Benchmark comparison of selected methods in each of the three languages</p>
-            <p>In fig 2 we should a selection of neutral landscape generators (random, edge gradient, perlin noise, distance-gradient)</p>
-            <h2 id="mpd-comparison">MPD comparison</h2>
-            <p>Why use this particular generator as the comparison? It’s slow. So slow that NLMR implements it in C++. (NLMR implements both MPD, neighbor, randrect, and random neighboorhood in c++). Still these three algorithms, which cosinsts of 3/16 of NLMR’s alg implementations, constitute 33% of its codebase.</p>
-            <p>In this section we show our implementation of MPD is faster than NLMR’s C++ MPD scales until the asyptotic limit imposed by the <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> scaling of the raster</p>
             <figure>
-            <img src="./figures/figure3.png" alt="Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)" /><figcaption aria-hidden="true">Comparison of speed of generating a midpoint displacement neutral landscape (y-axis) against raster size (measured as length of the size of a square raster, x-axis)</figcaption>
+            <img src="./figures/benchmark.png" alt="todo" /><figcaption aria-hidden="true">todo</figcaption>
             </figure>
             <h1 id="generating-dynamic-neutral-landscapes">Generating dynamic neutral landscapes</h1>
             <p>We implement methods for generating change that are temporally autocorrelated, spatially autocorrelated, or both.</p>
-            <p><span class="math inline"><em>M</em><sub><em>t</em></sub> = <em>f</em>(<em>M</em><sub><em>t</em> − 1</sub>)</span></p>
+            <p><span class="math inline"><em>M</em><sub><em>t</em></sub> = <em>M</em><sub><em>t</em> − 1</sub> + <em>f</em>(<em>M</em>(<em>t</em> − 1))</span></p>
+            <h2 id="models-of-change">Models of change</h2>
+            <h3 id="directional">Directional</h3>
+            <h3 id="temporally-autocorrelation">Temporally autocorrelation</h3>
+            <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline"><em>U</em></span> matrix of draws from standard <span class="math inline">Normal(0, 1)</span></p>
+            <p><span class="math inline"><em>f</em><sub><em>T</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em><em>U</em><sub><em>i</em><em>j</em></sub></span></p>
+            <h3 id="spatial-autocorrelation">Spatial autocorrelation</h3>
+            <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline">[<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span>: the <span class="math inline">(<em>i</em>, <em>j</em>)</span> entry of the zscore of the <span class="math inline"><em>δ</em></span> matrix</p>
+            <p><span class="math inline"><em>f</em><sub><em>S</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
+            <h3 id="spatiotemporal-autocorrelation">Spatiotemporal autocorrelation</h3>
+            <h2 id="rescaling-to-mimic-real-data">Rescaling to mimic real data</h2>
             <h1 id="discussion">Discussion</h1>
             <h1 id="references">References</h1>
         </article>

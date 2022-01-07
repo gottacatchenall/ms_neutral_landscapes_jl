@@ -259,13 +259,14 @@ seen use in a wide range of disciplines: from landscape genetics
 \emph{et al.} 2004; Remmel \& Fortin 2013), and biogeography (Albert
 \emph{et al.} 2017).
 
-The two primary packages used to simulate neutral landscapes are
-\texttt{NLMR} in (the \texttt{R} language) (Sciaini \emph{et al.} 2018)
-and \texttt{NLMpy} (in Python; Etherington \emph{et al.} 2015). We
-present \texttt{NeutralLandscapes.jl}, a package in \texttt{Julia} for
-neutral landscapes which is faster than both above package. Here we
-demonstrate that \texttt{NeutralLandscapes.jl}, depending on the method,
-is orders of magnitude faster than previous neutral landscape packages.
+We present \texttt{NeutralLandscapes.jl}, a package in \texttt{Julia}
+for neutral landscapes. The two primary packages used to simulate
+neutral landscapes are \texttt{NLMR} in (the \texttt{R} language)
+(Sciaini \emph{et al.} 2018) and \texttt{NLMpy} (in Python; Etherington
+\emph{et al.} 2015). Here we demonstrate that
+\texttt{NeutralLandscapes.jl}, depending on the method, is orders of
+magnitude faster than previous neutral landscape packages.
+
 As biodiversity science becomes increasingly concerned with temporal
 change and its consequences, its clear there is a gap in methodology in
 generating neutral landscapes that change over time. In addition we
@@ -305,7 +306,7 @@ using NeutralLandscapes
 using SimpleSDMLayers
 
 quebec = SimpleSDMPredictor(WorldClim, BioClim; left=-90., right=-50., top=75., bottom=40.)
-qcmask = fill(true, size(quebec)) 
+qcmask = fill(true, size(quebec))
 qcmask[findall(isnothing, quebec.grid)] .= false
 
 pltsettings = (cbar=:none, frame=:box)

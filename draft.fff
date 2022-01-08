@@ -20,3 +20,10 @@ source, supplied in less than 40 lines of code.}\label{fig:allmethods}
 \includegraphics{./figures/benchmark.png}
 \caption{todo}
 \end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{./figures/temporal.png}
+\caption{todo}
+\end{figure}

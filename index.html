@@ -234,18 +234,24 @@
             <img src="./figures/benchmark.png" alt="todo" /><figcaption aria-hidden="true">todo</figcaption>
             </figure>
             <h1 id="generating-dynamic-neutral-landscapes">Generating dynamic neutral landscapes</h1>
-            <p>We implement methods for generating change that are temporally autocorrelated, spatially autocorrelated, or both.</p>
+            <p>We implement methods for generating change that are temporally autocorrelated, spatially-autocorrelated, or both.</p>
             <p><span class="math inline"><em>M</em><sub><em>t</em></sub> = <em>M</em><sub><em>t</em> − 1</sub> + <em>f</em>(<em>M</em>(<em>t</em> − 1))</span></p>
             <h2 id="models-of-change">Models of change</h2>
             <h3 id="directional">Directional</h3>
             <h3 id="temporally-autocorrelation">Temporally autocorrelation</h3>
-            <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline"><em>U</em></span> matrix of draws from standard <span class="math inline">Normal(0, 1)</span></p>
+            <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline"><em>U</em></span> matrix of draws from standard <span class="math inline">Normal(0, 1)</span>.</p>
+            <p>Here <span class="math inline"><em>v</em></span> replects the amount of temporal autocorrelation.</p>
             <p><span class="math inline"><em>f</em><sub><em>T</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em><em>U</em><sub><em>i</em><em>j</em></sub></span></p>
+            <p>Results in an expected value of change of <span class="math inline"><em>r</em></span> per timestep with variance <span class="math inline"><em>v</em></span>.</p>
             <h3 id="spatial-autocorrelation">Spatial autocorrelation</h3>
+            <p>Generate a matrix <span class="math inline"><em>δ</em></span> with a NL generator.</p>
             <p><span class="math inline"><em>r</em></span>: rate, <span class="math inline"><em>v</em></span>: variability, <span class="math inline">[<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span>: the <span class="math inline">(<em>i</em>, <em>j</em>)</span> entry of the zscore of the <span class="math inline"><em>δ</em></span> matrix</p>
             <p><span class="math inline"><em>f</em><sub><em>S</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
             <h3 id="spatiotemporal-autocorrelation">Spatiotemporal autocorrelation</h3>
             <p><span class="math inline"><em>f</em><sub><em>S</em><em>T</em></sub>(<em>M</em><sub><em>i</em><em>j</em></sub>) = <em>r</em> + <em>v</em> ⋅ [<em>Z</em>(<em>δ</em>)]<sub><em>i</em><em>j</em></sub></span></p>
+            <figure>
+            <img src="./figures/temporal.png" alt="todo" /><figcaption aria-hidden="true">todo</figcaption>
+            </figure>
             <h2 id="rescaling-to-mimic-real-data">Rescaling to mimic real data</h2>
             <h1 id="discussion">Discussion</h1>
             <h1 class="unnumbered" id="references">References</h1>

@@ -74,7 +74,7 @@ neutral models must be able to scale to match those data dimensions.
 # Generating dynamic neutral landscapes
 
 We implement methods for generating change that are temporally
-autocorrelated, spatially autocorrelated, or both. 
+autocorrelated, spatially-autocorrelated, or both.
 
 $M_t = M_{t-1} + f(M(t-1))$
 
@@ -84,11 +84,20 @@ $M_t = M_{t-1} + f(M(t-1))$
 
 ### Temporally autocorrelation
 
-$r$: rate, $v$: variability, $U$ matrix of draws from standard $\text{Normal}(0,1)$
+$r$: rate, $v$: variability, $U$ matrix of draws from standard $\text{Normal}(0,1)$.
+
+Here $v$ replects the amount of temporal autocorrelation.
+
+
 
 $f_{T}(M_{ij}) = r + vU_{ij}$
 
+Results in an expected value of change of $r$ per timestep with variance $v$.
+
 ### Spatial autocorrelation
+
+Generate a matrix $\delta$ with a NL generator.
+
 $r$: rate, $v$: variability, $[Z(\delta)]_{ij}$: the $(i,j)$ entry of the zscore of the $\delta$ matrix
 
 $f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}$
@@ -97,6 +106,7 @@ $f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}$
 
 $f_{ST}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}$
 
+![todo](./figures/temporal.png)
 
 
 ## Rescaling to mimic real data

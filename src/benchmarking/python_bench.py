@@ -1,4 +1,8 @@
 from nlmpy import nlmpy
+import os
+
+os.environ['MKL_NUM_THREADS'] = '1'
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
 import time
 import numpy
 
@@ -20,7 +24,7 @@ sidelengths = range(3, 13)
 
 
 
-with open('artifacts/py.csv', 'w') as csvfile:
+with open('artifacts/py_singlethread.csv', 'w') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["model", "size", "meantime", "stdtime"])
 

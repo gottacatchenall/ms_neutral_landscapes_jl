@@ -46,40 +46,46 @@ function propose(θ)
     return SimpleSDMPredictor(mpd, boundingbox(temp)...) 
 end
 
-function ABC(prior)
+# difference is proposal score - current score
+acceptprobability(difference, α) = 1.0/(1.0+exp(-α*difference))
+
+function ABC(prior, α=1000)
     true_variogram = EmpiricalVariogram(geogrid, :cover)
    
-    numsteps = 100
-    ϵ = 0.00001
+    numsteps = 1000
 
-    hs = zeros(numsteps)
-    errors = zeros(numsteps)
+    Hchain = zeros(numsteps)
+    currentscore = zeros(numsteps)
 
-    cursor = 1
-    count = 1
-    while cursor < numsteps
+    currentscore[begin] = 1.0
+    for s in 2:numsteps
         H = rand(prior)
         proposal = propose(H)
         testgrid = georef((cover=convert(Matrix{Float16}, proposal.grid),), origin=(rawtemp.left,rawtemp.right), spacing=(xspace,yspace))
         test_variogram = EmpiricalVariogram(testgrid, :cover)
-        rmse = sum((true_variogram.ordinate .- test_variogram.ordinate).^2)
-        count += 1
-        if rmse < ϵ
-            errors[cursor] = rmse
-            hs[cursor] = H
-            cursor += 1
-            if cursor % 5 == 0 
-                @info cursor
-                @show "acceptrate = $(cursor/count)" 
-            end
-        end 
         
+        proposal_rmse = sum((true_variogram.ordinate .- test_variogram.ordinate).^2)
+        current_rmse = currentscore[s-1]
+        
+        p = acceptprobability(current_rmse-proposal_rmse, α)
+        if rand() < p
+            currentscore[s] = proposal_rmse
+            Hchain[s] = H
+        else  
+            currentscore[s] = currentscore[s-1]
+            Hchain[s] = Hchain[s-1]
+        end 
+        if s % 100 == 0 
+            @info s
+        end     
     end
-    return hs, errors
+    return Hchain, currentscore
 end
 
 ### TODO rescale temp to 0,1 
-@time hs, error = ABC(Uniform(0,1))
+@time hs, error = ABC(Uniform(0,1), 10^5.5)
 
 
-histogram(hs, bins=0:0.05:1)
+burnin = 100
+
+histogram(hs[100:end], bins=0:0.025:1, frame=:box, label="", xlim=(0,1), xlabel="H", ylabel="Posterior Frequency", size=(500,500), dpi=250, c=:mediumpurple4, fa=0.5)

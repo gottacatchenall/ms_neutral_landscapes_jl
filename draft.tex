@@ -194,29 +194,43 @@ Soon to be a paper, maybe. TK authors, MKB,VB,RS,TP
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Neutral landscapes are increasingly used in ecological and evolutionary
-studies to provide a null expectation spatial variation of a given
-measurement. Originally developed to simulate the spatially
-autocorrelated data (Gardner \emph{et al.} 1987; Milne 1992), the have
-seen use in a wide range of disciplines: from landscape genetics
-(Storfer \emph{et al.} 2007), to landscape and spatial ecology (Tinker
-\emph{et al.} 2004; Remmel \& Fortin 2013), and biogeography (Albert
-\emph{et al.} 2017).
+\begin{itemize}
+\tightlist
+\item
+  what are neutral landsacpes
+\end{itemize}
 
-We present \texttt{NeutralLandscapes.jl}, a package in \texttt{Julia}
-for neutral landscapes. The two primary packages used to simulate
-neutral landscapes are \texttt{NLMR} in (the \texttt{R} language)
-(Sciaini \emph{et al.} 2018) and \texttt{NLMpy} (in Python; Etherington
-\emph{et al.} 2015). Here we demonstrate that
-\texttt{NeutralLandscapes.jl}, depending on the method, is orders of
-magnitude faster than previous neutral landscape packages.
+Neutral landscapes are increasingly used in ecological and evolutionary
+studies to provide a null expectation spatial variation of some
+measurement.
+
+Originally based around methods for simulating spatially autocorrelated
+data (Gardner \emph{et al.} 1987; Milne 1992).
+
+whawt is spaital autocorrelation
+
+they have seen use in a wide range of fields in ecology and evolution:
+from landscape genetics (Storfer \emph{et al.} 2007), to landscape and
+spatial ecology (Tinker \emph{et al.} 2004; Remmel \& Fortin 2013), and
+biogeography (Albert \emph{et al.} 2017).
+
+The two most popular libraries used to simulate neutral landscapes are
+\texttt{NLMR} in (the \texttt{R} language) (Sciaini \emph{et al.} 2018)
+and \texttt{NLMpy} (in Python; Etherington \emph{et al.} 2015). Here we
+present \texttt{NeutralLandscapes.jl}, a package for neutral landscape
+simulation in the \texttt{Julia} language. So, why another package? Here
+we demonstrate that \texttt{NeutralLandscapes.jl} is orders of magnitude
+faster than previous neutral landscape packages. In addition,
+\texttt{NeutralLandscapes.jl} implements several novel methods for
+simulating environmental change with temporal variation.
 
 As biodiversity science becomes increasingly concerned with temporal
 change and its consequences, its clear there is a gap in methodology in
-generating neutral landscapes that change over time. In addition we
-present a novel method for generating landscape change with prescribed
-levels of spatial and temporal autocorrelation, which is implemented in
-\texttt{NeutralLandscapes.jl}
+generating neutral landscapes that change over time. Our model allows
+users to simulate time-series of any \texttt{NeutralLandscape} layer,
+and which produce an arbitrary distribution of change across every
+spatial cell, with provided levels of spatial and temporal
+autocorrelation.
 
 \hypertarget{software-overview}{%
 \section{Software Overview}\label{software-overview}}
@@ -238,6 +252,9 @@ source, supplied in less than 40 lines of code.}\label{fig:allmethods}
 }
 \end{figure}
 
+Further, \texttt{NL.jl} provides methods for interacting with other
+\texttt{julia} packages, and functions for rescaling
+
 \hypertarget{interoperability}{%
 \subsection{Interoperability}\label{interoperability}}
 
@@ -250,8 +267,8 @@ using NeutralLandscapes
 using SimpleSDMLayers
 
 quebec = SimpleSDMPredictor(WorldClim, BioClim; left=-90., right=-50., top=75., bottom=40.)
-qcmask = fill(true, size(quebec))
-qcmask[findall(isnothing, quebec.grid)] .= false
+qcmask = fill(true, size(quebec))                   # ------ TODO
+qcmask[findall(isnothing, quebec.grid)] .= false    # should both of these lines be possible only using mask?
 
 pltsettings = (cbar=:none, frame=:box)
 
@@ -270,6 +287,88 @@ plot(
 \caption{todo}
 \end{figure}
 
+\hypertarget{rescaling-to-mimic-real-data}{%
+\subsection{Rescaling to mimic real
+data}\label{rescaling-to-mimic-real-data}}
+
+Figure: Real temp (left) / Rescaled NL (right) , same unit bar
+
+\hypertarget{generating-dynamic-neutral-landscapes}{%
+\subsection{Generating dynamic neutral
+landscapes}\label{generating-dynamic-neutral-landscapes}}
+
+We implement methods for generating change that are temporally
+autocorrelated, spatially-autocorrelated, or both.
+
+\(M_t = M_{t-1} + f(M(t-1))\)
+
+\hypertarget{models-of-change}{%
+\subsection{Models of change}\label{models-of-change}}
+
+Two types of temporal change: (1) null change, where the is random
+variation in each cell across time but the mean value across all cells
+stays constant (with some variation around this constant due to
+randomness in change generation)
+
+\hypertarget{null}{%
+\subsubsection{Null}\label{null}}
+
+Take an arbitrary distribution (from \texttt{Distributions.jl}) and set
+its mean value to 0, and apply draws from that distribution to each cell
+at each timestep.
+
+\hypertarget{directional}{%
+\subsubsection{Directional}\label{directional}}
+
+Can take an arbitrary distribution of values and set its expected-value
+to be the primary input into a change model---the mean amount of change
+at each timestep. This can also be parameterized to a be a variable list
+of mean change at each corresponding timestep.
+
+\hypertarget{temporally-autocorrelation}{%
+\paragraph{Temporally
+autocorrelation}\label{temporally-autocorrelation}}
+
+We generate temporally autocorrelated change using the method. We take
+an arbitrary distribution \(A\)
+
+\(r\): rate, \(v\): variability, \(U\) matrix of draws from standard
+\(\text{Normal}(0,1)\). Here \(v\) replects the amount of temporal
+autocorrelation.
+
+The value of a given cell \((i,j)\) with value \(M_{ij}\)
+\[M_{ij}(t+1) = f_{T}(M_{ij}(t)) = r + vA_{ij}\]
+
+Results in an expected value of change of \(r\) per timestep with
+variance \(v\).
+
+\hypertarget{spatial-autocorrelation}{%
+\paragraph{Spatial autocorrelation}\label{spatial-autocorrelation}}
+
+Generate a matrix \(\delta\) with a NL generator.
+
+\(r\): rate, \(v\): variability, \([Z(\delta)]_{ij}\): the \((i,j)\)
+entry of the z-score of the \(\delta\) matrix
+
+Z-score is arbitrary and can be replaced with any dist.
+
+\(f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
+
+\hypertarget{spatiotemporal-autocorrelation}{%
+\paragraph{Spatiotemporal
+autocorrelation}\label{spatiotemporal-autocorrelation}}
+
+Finally, to implement change this is both spatially and temporally
+autocorrelated
+
+\(f_{ST}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
+
+\begin{figure}
+\centering
+\includegraphics{./figures/temporal.png}
+\caption{todo}
+\end{figure}
+
 \hypertarget{benchmark-comparison-to-nlmpy-and-nlmr}{%
 \section{\texorpdfstring{Benchmark comparison to \texttt{nlmpy} and
 \texttt{NLMR}}{Benchmark comparison to nlmpy and NLMR}}\label{benchmark-comparison-to-nlmpy-and-nlmr}}
@@ -283,63 +382,46 @@ models must be able to scale to match those data dimensions.
 \caption{todo}
 \end{figure}
 
-\hypertarget{generating-dynamic-neutral-landscapes}{%
-\section{Generating dynamic neutral
-landscapes}\label{generating-dynamic-neutral-landscapes}}
+How many lines of code, and what language is that code in for each pkg?
+\texttt{NLMR} contains 893 lines of R, and 376+51 lines of C++.
+\texttt{nlmpy} contains 386 lines of python. Julia contains 664 lines of
+(non-test) \texttt{julia}. Note these numbers refer only to lines of
+code and not comments.
 
-We implement methods for generating change that are temporally
-autocorrelated, spatially-autocorrelated, or both.
+\hypertarget{example-fitting-a-neutral-landscape-to-an-empirical-spatial-dataset}{%
+\section{Example: fitting a neutral landscape to an empirical spatial
+dataset}\label{example-fitting-a-neutral-landscape-to-an-empirical-spatial-dataset}}
 
-\(M_t = M_{t-1} + f(M(t-1))\)
+Here we use approximate bayesian computation to estimate the parameter
+of autocorrelation H for an empirical raster of temperature data.
 
-\hypertarget{models-of-change}{%
-\subsection{Models of change}\label{models-of-change}}
+Why? What if we are interested in differentiating the processes that
+occur in this \emph{real} landscape versus landscapes with \emph{similar
+statistical properties}.
 
-\hypertarget{directional}{%
-\subsubsection{Directional}\label{directional}}
+We take a raster of mean temp around the st lawrence lowlands in QC, and
+use ABC to estimate the value of H under the midpoint-displacement
+model.
 
-\hypertarget{temporally-autocorrelation}{%
-\subsubsection{Temporally
-autocorrelation}\label{temporally-autocorrelation}}
-
-\(r\): rate, \(v\): variability, \(U\) matrix of draws from standard
-\(\text{Normal}(0,1)\).
-
-Here \(v\) replects the amount of temporal autocorrelation.
-
-\(f_{T}(M_{ij}) = r + vU_{ij}\)
-
-Results in an expected value of change of \(r\) per timestep with
-variance \(v\).
-
-\hypertarget{spatial-autocorrelation}{%
-\subsubsection{Spatial autocorrelation}\label{spatial-autocorrelation}}
-
-Generate a matrix \(\delta\) with a NL generator.
-
-\(r\): rate, \(v\): variability, \([Z(\delta)]_{ij}\): the \((i,j)\)
-entry of the zscore of the \(\delta\) matrix
-
-\(f_{S}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
-
-\hypertarget{spatiotemporal-autocorrelation}{%
-\subsubsection{Spatiotemporal
-autocorrelation}\label{spatiotemporal-autocorrelation}}
-
-\(f_{ST}(M_{ij}) = r + v \cdot [Z(\delta)]_{ij}\)
+We use the variogram as the loss function
 
 \begin{figure}
+\hypertarget{fig:post}{%
 \centering
-\includegraphics{./figures/temporal.png}
-\caption{todo}
+\includegraphics{./figures/posterior.png}
+\caption{todo}\label{fig:post}
+}
 \end{figure}
-
-\hypertarget{rescaling-to-mimic-real-data}{%
-\subsection{Rescaling to mimic real
-data}\label{rescaling-to-mimic-real-data}}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
+
+Why is it good that we've made this a faster thing to do? Why are models
+of temporal change necessary? What can simulation do for spatial ecology
+more generally?
+
+What are questions we can address with NL.jl that was not possible
+before?
 
 \hypertarget{references}{%
 \section*{References}\label{references}}

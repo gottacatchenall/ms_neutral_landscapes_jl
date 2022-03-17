@@ -17,13 +17,22 @@ source, supplied in less than 40 lines of code.}\label{fig:allmethods}
  
 \begin{figure}
 \centering
-\includegraphics{./figures/benchmark.png}
+\includegraphics{./figures/temporal.png}
 \caption{todo}
 \end{figure}
 \efloatseparator
  
 \begin{figure}
 \centering
-\includegraphics{./figures/temporal.png}
+\includegraphics{./figures/benchmark.png}
 \caption{todo}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\hypertarget{fig:post}{%
+\centering
+\includegraphics{./figures/posterior.png}
+\caption{todo}\label{fig:post}
+}
 \end{figure}

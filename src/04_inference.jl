@@ -19,7 +19,7 @@ ENV["RASTERDATASOURCES_PATH"] = "/home/michael/data/"
 rawtemp = convert(Float16, SimpleSDMPredictor(CHELSA, BioClim, 1; left=-77, right=-70.0, bottom=44.0, top=49.0))
 
 temp = coarsen(SimpleSDMPredictor(rawtemp.grid[1:600,1:800], boundingbox(rawtemp)...), StatsBase.mean, (8,8))
-plot(temp)
+tempplt = plot(temp, cbar=:none, frame=:box, xlabel="Longitude", ylabel="Longitude")
 temp = broadcast(x->1.0 - (maximum(temp) - x)/(maximum(temp) - minimum(temp)), temp)
 xspace,yspace = (temp.right - temp.left) / size(temp)[1], (temp.top -temp.bottom) / size(temp)[2]
 covergrid = map(x->isnothing(x) ? 0. : x, temp.grid)
@@ -87,5 +87,22 @@ end
 
 
 burnin = 100
+histogram(hs[burnin:end], bins=0:0.025:1, frame=:box, label="", xlim=(0,1), xlabel="H", ylabel="Posterior Frequency", size=(500,500), dpi=250, c=:mediumpurple4, fa=0.5)
 
-histogram(hs[100:end], bins=0:0.025:1, frame=:box, label="", xlim=(0,1), xlabel="H", ylabel="Posterior Frequency", size=(500,500), dpi=250, c=:mediumpurple4, fa=0.5)
+
+
+
+using Plots, CSV, DataFrames
+
+df = CSV.read("./src/posterior_H.csv", DataFrame)
+
+histplt =histogram(df.posterior_H, legend=:topleft, label="Posterior", bins=0:0.01:1, normalize=:probability, fc=:steelblue4, fa=0.5, frame=:box, size=(500,500), dpi=300, xlim=(0,1))
+hline!([0.01], label="Prior", lw=2, c=:forestgreen)
+
+xlabel!("H")
+ylabel!("Probability")
+
+
+using UnitfulPlots
+plot(tempplt, histplt, size=(700, 300), margin=3UnitfulPlots.mm)
+savefig("posterior.png")

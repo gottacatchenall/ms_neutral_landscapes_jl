@@ -96,13 +96,13 @@ using Plots, CSV, DataFrames
 
 df = CSV.read("./src/posterior_H.csv", DataFrame)
 
-histplt =histogram(df.posterior_H, legend=:topleft, label="Posterior", bins=0:0.01:1, normalize=:probability, fc=:steelblue4, fa=0.5, frame=:box, size=(500,500), dpi=300, xlim=(0,1))
+histplt =histogram(df.posterior_H, lw=0.5, legend=:topleft, label="Posterior", bins=0:0.01:1, normalize=:probability, fc=:dodgerblue, fa=0.5, frame=:box, size=(500,500), dpi=300, xlim=(0,1))
 hline!([0.01], label="Prior", lw=2, c=:forestgreen)
 
 xlabel!("H")
 ylabel!("Probability")
 
 
-using UnitfulPlots
-plot(tempplt, histplt, size=(700, 300), margin=3UnitfulPlots.mm)
+using Plots.PlotMeasures: mm
+plot(tempplt, histplt, size=(750, 400), margin=3mm)
 savefig("posterior.png")

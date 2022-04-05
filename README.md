@@ -1,37 +1,41 @@
 # Introduction
 
-- what are neutral landsacpes
+- what are neutral landscapes
 
 Neutral landscapes are increasingly used in ecological and
-evolutionary studies to provide a null expectation spatial variation
-of some measurement.
+evolutionary studies to provide a null expectation spatial variation of some measurement.
+
+Different properties of landscapes (elevation, land cover,
+temperature) vary across space in non-random ways. Tobler's law of
+geography: "everything is related to everything else, but near things
+are more related than distant things"
 
 Originally based around methods for simulating
-spatially autocorrelated data [@Gardner1987NeuMod; @Milne1992SpaAgg].
+spatially auto-correlated data [@Gardner1987NeuMod; @Milne1992SpaAgg].
 
-whawt is spaital autocorrelation
+
 
 they have seen use in a wide range of fields in ecology and evolution:
-from landscape genetics [@Storfer2007PutLan], to landscape and spatial
+from landscape genetics [@Storfer2007PutLan], to spatial
 ecology [@Tinker2004HisRan; @Remmel2013CatCla], and biogeography
 [@Albert2017BarDis].
 
-
- The two most popular libraries used to simulate neutral landscapes
-are `NLMR` in (the `R` language) [@Sciaini2018NlmLan] and `NLMpy` [in
+The two most popular libraries used to generate neutral landscapes are
+`NLMR` in (the `R` language) [@Sciaini2018NlmLan] and `NLMpy` [in
 Python; @Etherington2015NlmPyt]. Here we present
-`NeutralLandscapes.jl`, a package for neutral landscape simulation in
-the `Julia` language.   So, why another package?  Here we demonstrate
-that `NeutralLandscapes.jl` is orders of magnitude faster than
-previous neutral landscape packages. In addition,
-`NeutralLandscapes.jl` implements several novel methods for simulating
-environmental change with temporal variation.
+`NeutralLandscapes.jl`, a new package for neutral landscape simulation
+in the `Julia` language. So, why create another package?  
 
-As biodiversity science becomes increasingly concerned with temporal
+Here we demonstrate that `NeutralLandscapes.jl` is orders of magnitude
+faster than previous neutral landscape packages.
+
+In addition, `NeutralLandscapes.jl` implements several novel methods
+for simulating environmental change with temporal variation. As
+biodiversity science becomes increasingly concerned with temporal
 change and its consequences, its clear there is a gap in methodology
-in generating neutral landscapes that change over time.   Our model
+in generating neutral landscapes that change over time. Our model
 allows users to simulate time-series of any `NeutralLandscape` layer,
-and which produce an arbitrary distribution of change across every
+and which can produce an arbitrary distribution of change across every
 spatial cell, with provided levels of spatial and temporal
 autocorrelation.
 

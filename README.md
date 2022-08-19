@@ -159,7 +159,7 @@ contains 386 lines of python. Julia contains 664 lines of (non-test)
 `julia`. Note these numbers refer only to lines of code and not
 comments.
 
-# Example: fitting a neutral landscape to an empirical spatial dataset
+# Example: fitting a neutral landscape to an empirical spatial dataset using generative modeling
 
 Here we use approximate bayesian computation to estimate the parameter of autocorrelation H for an empirical raster of temperature data.
 
